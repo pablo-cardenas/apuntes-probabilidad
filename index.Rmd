@@ -1,0 +1,12 @@
+---
+title: "Apuntes"
+author: "Pablo Cárdenas"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+documentclass: book
+description: "This is a minimal example of using the bookdown package to write a book."
+---
+
+# Prefacio {-}
+
+Apuntes de clase.

@@ -1,0 +1,123 @@
+# Conteo y Probabilidad
+
+## Problema de cumpleaños
+
+Hay $k$ personas en un cuarto.
+Supon que los cumpleaños de cada persona son igualmente probables de ocurrir en los $365$ días del año,
+y los cumpleaños son independientes.
+Cuál es la probabilidad que al menos haya un par de personas con el mismo cumpleaños.
+
+### Usando un contador
+
+```{r}
+set.seed(42)
+n <- 100  # número de simulaciones
+k <- 10  # número de personas
+count <- 0
+for (i in 1:n) {
+  x <- sample(365, k, replace = T)
+  coinciden <- any(table(x) > 1)
+  if (coinciden) {
+    count <- count + 1
+  }
+}
+count / n
+```
+
+### Usando vectores
+
+```{r}
+set.seed(42)
+n <- 100  # número de simulaciones
+k <- 10  # número de personas
+y <- rep(0, n)
+for (i in 1:n) {
+  x <- sample(365, 10, replace = T)
+  y[i] <- any(table(x) > 1)
+}
+mean(y)
+```
+
+### Usando `replicate`
+```{r}
+set.seed(42)
+n <- 100  # número de simulaciones
+k <- 10  # número de personas
+x <- replicate(n, any(table(sample(365, k, replace = T)) > 1))
+mean(x)
+```
+
+
+
+## Matching problem de De Montmort
+
+Considera un mazo de $n$ cartas bien barajadas y etiquetadas del $1$ al $n$.
+Vas volteando las cartas uno a uno, diciendo los numeros del $1$ al $n$.
+Ganas el juego si, en algún punto, el número dicho es el mismo de la etiqueta de la carta volteada.
+¿Cuál es la probabilidad de ganar?
+
+```{r}
+set.seed(42)
+n <- 10  # número de cartas
+y <- replicate(1000, any(sample(n) == 1:n))
+mean(y)
+```
+
+
+## Error de Leibniz
+
+Si se lanzan dos dados, ¿es más probable que la suma sea 11 o que sea 12?
+
+```{r}
+set.seed(42)
+n <- 2000
+dado1 <- sample(6, n, replace = T)
+dado2 <- sample(6, n, replace = T)
+```
+
+La probabilidad de que la suma sea 11
+
+```{r}
+mean(dado1 + dado2 == 11)
+```
+
+La probabilidad de que la suma sea 12
+
+```{r}
+mean(dado1 + dado2 == 12)
+```
+
+
+## Full house en poker
+
+¿Cuál es la probabilidad de un full house?
+
+```{r}
+set.seed(42)
+x <- replicate(20000, {
+  mano <- sample(52, 5)
+  table_mano <- table(mano %% 13)
+  all(2 <= table_mano & table_mano <= 3)
+})
+mean(x)
+```
+
+## Problema de Newton-Pepys
+
+```{r}
+set.seed(42)
+x <- replicate(10000, any(sample(6, 6, replace = T) == 6))
+mean(x)
+```
+
+```{r}
+set.seed(42)
+x <- replicate(10000, sum(sample(6, 12, replace = T) == 6) >= 2)
+mean(x)
+```
+
+```{r}
+set.seed(42)
+x <- replicate(10000, sum(sample(6, 18, replace = T) == 6) >= 3)
+mean(x)
+```

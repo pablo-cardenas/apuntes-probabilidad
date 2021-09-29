@@ -1,0 +1,108 @@
+# Probabilidad Condicional
+
+## Problema de los dos hijos
+Muestras aleatorias
+
+```{r}
+set.seed(42)
+n <- 10^6
+hijo1 <- sample(c("niño", "niña"), n, replace = T)
+hijo2 <- sample(c("niño", "niña"), n, replace = T)
+```
+
+Una familia tiene dos hijos.
+El mayor es niña.
+¿Cuál es la probabilidad que ambos hijos sean niñas?
+
+```{r}
+n_b <- sum(hijo1 == "niña")
+n_ab <- sum(hijo1 == "niña" & hijo2 == "niña")
+n_ab / n_b
+```
+
+Una familia tiene dos hijos.
+Al menos uno de los hijos es niño.
+¿Cuál es la probabilidad que ambos hijos sean niños?
+
+```{r}
+n_b <- sum(hijo1 == "niño" | hijo2 == "niño")
+n_ab <- sum(hijo1 == "niño" & hijo2 == "niño")
+n_ab / n_b
+```
+
+Una familia tiene dos hijos.
+Aleatoreamente, te encuentras con uno de los dos y te das cuenta que es niña.
+¿Cuál es la probabilidad que ambos hijos sean niñas?
+
+```{r}
+set.seed(43)
+hijo_encontrado <- sample(2, n, replace = T)
+genero_encontrado <- ifelse(hijo_encontrado == 1, hijo1, hijo2)
+n_b <- sum(genero_encontrado == "niña")
+n_ab <- sum(hijo1 == "niña" & hijo2 == "niña")
+n_ab / n_b
+```
+
+Una familia tiene dos hijos.
+Encuentra la probabilidad de que ambos hijos sean niñas, dado que al menos uno de los dos es una niña que nació en invierno.
+Además, asume que nacer cada una de las 4 estaciones tiene la misma probabilidad y que es independiente del género.
+
+```{r}
+set.seed(44)
+estaciones <- c("primavera", "verano", "otoño", "invierno")
+estacion1 <- sample(estaciones, size = n, replace = T)
+estacion2 <- sample(estaciones, size = n, replace = T)
+
+n_b <- sum((hijo1 == "niña" & estacion1 == "invierno") |
+           (hijo2 == "niña" & estacion2 == "invierno"))
+n_ab <- sum((hijo1 == "niña" & hijo2 == "niña") & (
+               (hijo1 == "niña" & estacion1 == "invierno") |
+               (hijo2 == "niña" & estacion2 == "invierno")
+           ))
+n_ab / n_b
+```
+
+## Monty Hall
+
+```{r}
+set.seed(45)
+n <- 10^5
+k <- 4
+puerta_carro <- sample(k, n, replace = T)
+puerta_elegida <- sample(k, n, replace = T)
+
+retirar <- function(puerta_elegida, puerta_carro) {
+  sample((1:k)[-c(puerta_elegida, puerta_carro)], 1)
+}
+
+puerta_retirada <- mapply(retirar, puerta_elegida, puerta_carro)
+```
+
+Si decido mantener la puerta
+```{r}
+mean(puerta_carro == puerta_elegida)
+```
+
+Si decido cambiar de puerta
+```{r}
+cambiar <- function(puerta_elegida, puerta_retirada) {
+  sample((1:k)[-c(puerta_retirada, puerta_elegida)], 1)
+}
+puerta_cambiada <- mapply(cambiar, puerta_elegida, puerta_retirada)
+mean(puerta_cambiada == puerta_carro)
+```
+
+## Ruina del Apostador
+
+```{r}
+n <- 10
+i <- 3
+termina <- replicate(1000, {
+  while (!(i %in% c(0, n))) {
+    paso <- 2 * sample(2, 1) - 3
+    i <- i + paso
+  }
+  i
+})
+table(termina)
+```

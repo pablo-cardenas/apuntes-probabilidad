@@ -1,0 +1,14 @@
+bookdown::bs4_book:
+  repo: https://github.com/pablo-cardenas/apuntes-probabilidad
+  theme:
+    primary: "#544154"
+    base_font:
+      google: Sen
+    heading_font:
+      google:
+        family: Bitter
+        wght: 500
+    code_font:
+      google:
+        family: DM Mono
+        local: false
