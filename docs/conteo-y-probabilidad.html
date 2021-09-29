@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>1 Conteo y Probabilidad | Apuntes</title>
+<meta name="author" content="Pablo Cárdenas">
+<meta name="description" content="1.1 Problema de cumpleaños Hay \(k\) personas en un cuarto. Supon que los cumpleaños de cada persona son igualmente probables de ocurrir en los \(365\) días del año, y los cumpleaños son...">
+<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta property="og:title" content="1 Conteo y Probabilidad | Apuntes">
+<meta property="og:type" content="book">
+<meta property="og:description" content="1.1 Problema de cumpleaños Hay \(k\) personas en un cuarto. Supon que los cumpleaños de cada persona son igualmente probables de ocurrir en los \(365\) días del año, y los cumpleaños son...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="1 Conteo y Probabilidad | Apuntes">
+<meta name="twitter:description" content="1.1 Problema de cumpleaños Hay \(k\) personas en un cuarto. Supon que los cumpleaños de cada persona son igualmente probables de ocurrir en los \(365\) días del año, y los cumpleaños son...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><link href="libs/_Sen-0.4.0/font.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM%20Mono&amp;display=swap" rel="stylesheet">
+<link href="libs/_Bitter-0.4.0/font.css" rel="stylesheet">
+<script src="libs/bs3compat-0.3.0/transition.js"></script><script src="libs/bs3compat-0.3.0/tabs.js"></script><script src="libs/bs3compat-0.3.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS -->
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Apuntes</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Prefacio</a></li>
+<li><a class="active" href="conteo-y-probabilidad.html"><span class="header-section-number">1</span> Conteo y Probabilidad</a></li>
+<li><a class="" href="probabilidad-condicional.html"><span class="header-section-number">2</span> Probabilidad Condicional</a></li>
+<li><a class="" href="variables-aleatorias-discretas.html"><span class="header-section-number">3</span> Variables Aleatorias Discretas</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/pablo-cardenas/apuntes-probabilidad">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="conteo-y-probabilidad" class="section level1" number="1">
+<h1>
+<span class="header-section-number">1</span> Conteo y Probabilidad<a class="anchor" aria-label="anchor" href="#conteo-y-probabilidad"><i class="fas fa-link"></i></a>
+</h1>
+<div id="problema-de-cumpleaños" class="section level2" number="1.1">
+<h2>
+<span class="header-section-number">1.1</span> Problema de cumpleaños<a class="anchor" aria-label="anchor" href="#problema-de-cumplea%C3%B1os"><i class="fas fa-link"></i></a>
+</h2>
+<p>Hay <span class="math inline">\(k\)</span> personas en un cuarto.
+Supon que los cumpleaños de cada persona son igualmente probables de ocurrir en los <span class="math inline">\(365\)</span> días del año,
+y los cumpleaños son independientes.
+Cuál es la probabilidad que al menos haya un par de personas con el mismo cumpleaños.</p>
+<div id="usando-un-contador" class="section level3" number="1.1.1">
+<h3>
+<span class="header-section-number">1.1.1</span> Usando un contador<a class="anchor" aria-label="anchor" href="#usando-un-contador"><i class="fas fa-link"></i></a>
+</h3>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">42</span><span class="op">)</span>
+<span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">100</span>  <span class="co"># número de simulaciones</span>
+<span class="va">k</span> <span class="op">&lt;-</span> <span class="fl">10</span>  <span class="co"># número de personas</span>
+<span class="va">count</span> <span class="op">&lt;-</span> <span class="fl">0</span>
+<span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="va">n</span><span class="op">)</span> <span class="op">{</span>
+  <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">365</span>, <span class="va">k</span>, replace <span class="op">=</span> <span class="cn">T</span><span class="op">)</span>
+  <span class="va">coinciden</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/any.html">any</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">1</span><span class="op">)</span>
+  <span class="kw">if</span> <span class="op">(</span><span class="va">coinciden</span><span class="op">)</span> <span class="op">{</span>
+    <span class="va">count</span> <span class="op">&lt;-</span> <span class="va">count</span> <span class="op">+</span> <span class="fl">1</span>
+  <span class="op">}</span>
+<span class="op">}</span>
+<span class="va">count</span> <span class="op">/</span> <span class="va">n</span></code></pre></div>
+<pre><code>## [1] 0.13</code></pre>
+</div>
+<div id="usando-vectores" class="section level3" number="1.1.2">
+<h3>
+<span class="header-section-number">1.1.2</span> Usando vectores<a class="anchor" aria-label="anchor" href="#usando-vectores"><i class="fas fa-link"></i></a>
+</h3>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">42</span><span class="op">)</span>
+<span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">100</span>  <span class="co"># número de simulaciones</span>
+<span class="va">k</span> <span class="op">&lt;-</span> <span class="fl">10</span>  <span class="co"># número de personas</span>
+<span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="va">n</span><span class="op">)</span>
+<span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="va">n</span><span class="op">)</span> <span class="op">{</span>
+  <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">365</span>, <span class="fl">10</span>, replace <span class="op">=</span> <span class="cn">T</span><span class="op">)</span>
+  <span class="va">y</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/any.html">any</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">1</span><span class="op">)</span>
+<span class="op">}</span>
+<span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 0.13</code></pre>
+</div>
+<div id="usando-replicate" class="section level3" number="1.1.3">
+<h3>
+<span class="header-section-number">1.1.3</span> Usando <code>replicate</code><a class="anchor" aria-label="anchor" href="#usando-replicate"><i class="fas fa-link"></i></a>
+</h3>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">42</span><span class="op">)</span>
+<span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">100</span>  <span class="co"># número de simulaciones</span>
+<span class="va">k</span> <span class="op">&lt;-</span> <span class="fl">10</span>  <span class="co"># número de personas</span>
+<span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="va">n</span>, <span class="fu"><a href="https://rdrr.io/r/base/any.html">any</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">365</span>, <span class="va">k</span>, replace <span class="op">=</span> <span class="cn">T</span><span class="op">)</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 0.13</code></pre>
+</div>
+</div>
+<div id="matching-problem-de-de-montmort" class="section level2" number="1.2">
+<h2>
+<span class="header-section-number">1.2</span> Matching problem de De Montmort<a class="anchor" aria-label="anchor" href="#matching-problem-de-de-montmort"><i class="fas fa-link"></i></a>
+</h2>
+<p>Considera un mazo de <span class="math inline">\(n\)</span> cartas bien barajadas y etiquetadas del <span class="math inline">\(1\)</span> al <span class="math inline">\(n\)</span>.
+Vas volteando las cartas uno a uno, diciendo los numeros del <span class="math inline">\(1\)</span> al <span class="math inline">\(n\)</span>.
+Ganas el juego si, en algún punto, el número dicho es el mismo de la etiqueta de la carta volteada.
+¿Cuál es la probabilidad de ganar?</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">42</span><span class="op">)</span>
+<span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">10</span>  <span class="co"># número de cartas</span>
+<span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="fl">1000</span>, <span class="fu"><a href="https://rdrr.io/r/base/any.html">any</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span> <span class="op">==</span> <span class="fl">1</span><span class="op">:</span><span class="va">n</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 0.658</code></pre>
+</div>
+<div id="error-de-leibniz" class="section level2" number="1.3">
+<h2>
+<span class="header-section-number">1.3</span> Error de Leibniz<a class="anchor" aria-label="anchor" href="#error-de-leibniz"><i class="fas fa-link"></i></a>
+</h2>
+<p>Si se lanzan dos dados, ¿es más probable que la suma sea 11 o que sea 12?</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">42</span><span class="op">)</span>
+<span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">2000</span>
+<span class="va">dado1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">6</span>, <span class="va">n</span>, replace <span class="op">=</span> <span class="cn">T</span><span class="op">)</span>
+<span class="va">dado2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">6</span>, <span class="va">n</span>, replace <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></code></pre></div>
+<p>La probabilidad de que la suma sea 11</p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">dado1</span> <span class="op">+</span> <span class="va">dado2</span> <span class="op">==</span> <span class="fl">11</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 0.0565</code></pre>
+<p>La probabilidad de que la suma sea 12</p>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">dado1</span> <span class="op">+</span> <span class="va">dado2</span> <span class="op">==</span> <span class="fl">12</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 0.0275</code></pre>
+</div>
+<div id="full-house-en-poker" class="section level2" number="1.4">
+<h2>
+<span class="header-section-number">1.4</span> Full house en poker<a class="anchor" aria-label="anchor" href="#full-house-en-poker"><i class="fas fa-link"></i></a>
+</h2>
+<p>¿Cuál es la probabilidad de un full house?</p>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">42</span><span class="op">)</span>
+<span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="fl">20000</span>, <span class="op">{</span>
+  <span class="va">mano</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">52</span>, <span class="fl">5</span><span class="op">)</span>
+  <span class="va">table_mano</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">mano</span> <span class="op">%%</span> <span class="fl">13</span><span class="op">)</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/all.html">all</a></span><span class="op">(</span><span class="fl">2</span> <span class="op">&lt;=</span> <span class="va">table_mano</span> <span class="op">&amp;</span> <span class="va">table_mano</span> <span class="op">&lt;=</span> <span class="fl">3</span><span class="op">)</span>
+<span class="op">}</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 0.0013</code></pre>
+</div>
+<div id="problema-de-newton-pepys" class="section level2" number="1.5">
+<h2>
+<span class="header-section-number">1.5</span> Problema de Newton-Pepys<a class="anchor" aria-label="anchor" href="#problema-de-newton-pepys"><i class="fas fa-link"></i></a>
+</h2>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">42</span><span class="op">)</span>
+<span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="fl">10000</span>, <span class="fu"><a href="https://rdrr.io/r/base/any.html">any</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">6</span>, <span class="fl">6</span>, replace <span class="op">=</span> <span class="cn">T</span><span class="op">)</span> <span class="op">==</span> <span class="fl">6</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 0.6573</code></pre>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">42</span><span class="op">)</span>
+<span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="fl">10000</span>, <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">6</span>, <span class="fl">12</span>, replace <span class="op">=</span> <span class="cn">T</span><span class="op">)</span> <span class="op">==</span> <span class="fl">6</span><span class="op">)</span> <span class="op">&gt;=</span> <span class="fl">2</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 0.6108</code></pre>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">42</span><span class="op">)</span>
+<span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="fl">10000</span>, <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">6</span>, <span class="fl">18</span>, replace <span class="op">=</span> <span class="cn">T</span><span class="op">)</span> <span class="op">==</span> <span class="fl">6</span><span class="op">)</span> <span class="op">&gt;=</span> <span class="fl">3</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 0.5932</code></pre>
+
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="index.html">Prefacio</a></div>
+<div class="next"><a href="probabilidad-condicional.html"><span class="header-section-number">2</span> Probabilidad Condicional</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#conteo-y-probabilidad"><span class="header-section-number">1</span> Conteo y Probabilidad</a></li>
+<li>
+<a class="nav-link" href="#problema-de-cumplea%C3%B1os"><span class="header-section-number">1.1</span> Problema de cumpleaños</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#usando-un-contador"><span class="header-section-number">1.1.1</span> Usando un contador</a></li>
+<li><a class="nav-link" href="#usando-vectores"><span class="header-section-number">1.1.2</span> Usando vectores</a></li>
+<li><a class="nav-link" href="#usando-replicate"><span class="header-section-number">1.1.3</span> Usando replicate</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#matching-problem-de-de-montmort"><span class="header-section-number">1.2</span> Matching problem de De Montmort</a></li>
+<li><a class="nav-link" href="#error-de-leibniz"><span class="header-section-number">1.3</span> Error de Leibniz</a></li>
+<li><a class="nav-link" href="#full-house-en-poker"><span class="header-section-number">1.4</span> Full house en poker</a></li>
+<li><a class="nav-link" href="#problema-de-newton-pepys"><span class="header-section-number">1.5</span> Problema de Newton-Pepys</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/pablo-cardenas/apuntes-probabilidad/blob/master/01-probabilidad-y-conteo.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/pablo-cardenas/apuntes-probabilidad/edit/master/01-probabilidad-y-conteo.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Apuntes</strong>" was written by Pablo Cárdenas. It was last built on 2021-09-29.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

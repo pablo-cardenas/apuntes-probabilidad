@@ -1,0 +1,17 @@
+conteo-y-probabilidad
+problema-de-cumpleaños
+usando-un-contador
+usando-vectores
+usando-replicate
+matching-problem-de-de-montmort
+error-de-leibniz
+full-house-en-poker
+problema-de-newton-pepys
+probabilidad-condicional
+problema-de-los-dos-hijos
+monty-hall
+ruina-del-apostador
+variables-aleatorias-discretas
+distribuciones
+distribución-binomial
+dbinom
