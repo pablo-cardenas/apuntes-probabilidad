@@ -1,5 +1,7 @@
 bookdown::bs4_book:
-  repo: https://github.com/pablo-cardenas/apuntes-probabilidad
+  repo:
+    base: https://github.com/pablo-cardenas/apuntes-probabilidad
+    branch: main
   theme:
     primary: "#544154"
     base_font:
