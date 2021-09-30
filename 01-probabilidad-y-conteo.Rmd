@@ -121,3 +121,71 @@ set.seed(42)
 x <- replicate(10000, sum(sample(6, 18, replace = T) == 6) >= 3)
 mean(x)
 ```
+
+
+## Lema de Borel-Cantelli
+
+::: {.lemma #borel-cantelli name="Teorema de Borel-Cantelli"}
+Si \( \displaystyle\sum_{n=1}^\infty {\mathrm{P}(A_n)} = \infty \) y los eventos \( (A_n)_ {n=1}^\infty \) son independientes,
+entonces \(\displaystyle\mathrm{P}(A_n\text{ rec.}) = 1 \)
+:::
+
+
+### Ejemplo
+Sean \(q \in \mathbb{N}\), \( \Omega = \{0, 1\}^\mathbb{N}\) y  \(A_n = \{\omega \in \Omega \,|\, \omega_{nq+1} = \omega_{nq+2} = \cdots = \omega_{(n+1)q-1} = 1\}\).
+Luego, por el lema \@ref(lem:borel-cantelli), \(\displaystyle\mathrm{P}(A_n\text{ rec.}) = 1 \).
+
+### Simulación del ejemplo
+
+Digamos que \( q = 4\).
+En una muestra \( \omega \), se cumplir que \(A_n\) sea recurrente.
+Primero encontramos los primeros 5 \(n\)'s que cumplen \( \omega \in A_n\)
+
+
+```{r}
+set.seed(42)
+q <- 4
+monedas_lanzadas <- c()
+exito <- c()
+for (i in 1:5) {
+  repeat {
+    q_monedas_lanzadas <- sample(c(0, 1), q, replace = T)
+    monedas_lanzadas <- c(monedas_lanzadas, q_monedas_lanzadas)
+    if (all(q_monedas_lanzadas == 1)) {
+      exito <- c(exito, T)
+      break
+    }
+    exito <- c(exito, F)
+  }
+}
+which(exito)
+```
+
+Esos son los primeros 5 \(n\)'s que cumplen \( \omega \in A_n\).
+Ahora ploteamos la muestra. De rojo se muestra las veces que cumple.
+
+```{r}
+color <- rep(ifelse(exito, "red", "black"), each = q)
+cex <- rep(ifelse(exito, 1, 1), each = q)
+plot(monedas_lanzadas, pch = 1, col = color, cex = cex)
+```
+
+Ahora encontremos los 10 siguentes \(n\)'s que cumplen.
+
+```{r}
+for (i in 1:10) {
+  repeat {
+    q_monedas_lanzadas <- sample(c(0, 1), q, replace = T)
+    monedas_lanzadas <- c(monedas_lanzadas, q_monedas_lanzadas)
+    if (all(q_monedas_lanzadas == 1)) {
+      exito <- c(exito, T)
+      break
+    }
+    exito <- c(exito, F)
+  }
+}
+which(exito)
+color <- rep(ifelse(exito, "red", "black"), each = q)
+cex <- rep(ifelse(exito, 4, 1), each = q)
+plot(monedas_lanzadas, pch = ".", col = color, cex = cex)
+```
