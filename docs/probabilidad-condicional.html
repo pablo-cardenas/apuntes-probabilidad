@@ -45,7 +45,7 @@
 <li><a class="" href="index.html">Prefacio</a></li>
 <li><a class="" href="conteo-y-probabilidad.html"><span class="header-section-number">1</span> Conteo y Probabilidad</a></li>
 <li><a class="active" href="probabilidad-condicional.html"><span class="header-section-number">2</span> Probabilidad Condicional</a></li>
-<li><a class="" href="variables-aleatorias-discretas.html"><span class="header-section-number">3</span> Variables Aleatorias Discretas</a></li>
+<li><a class="" href="variables-aleatorias.html"><span class="header-section-number">3</span> Variables Aleatorias</a></li>
 </ul>
 
         <div class="book-extra">
@@ -105,52 +105,33 @@ Además, asume que nacer cada una de las 4 estaciones tiene la misma probabilida
 
 <span class="va">n_b</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="op">(</span><span class="va">hijo1</span> <span class="op">==</span> <span class="st">"niña"</span> <span class="op">&amp;</span> <span class="va">estacion1</span> <span class="op">==</span> <span class="st">"invierno"</span><span class="op">)</span> <span class="op">|</span>
            <span class="op">(</span><span class="va">hijo2</span> <span class="op">==</span> <span class="st">"niña"</span> <span class="op">&amp;</span> <span class="va">estacion2</span> <span class="op">==</span> <span class="st">"invierno"</span><span class="op">)</span><span class="op">)</span>
-<span class="va">n_ab</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="op">(</span><span class="va">hijo1</span> <span class="op">==</span> <span class="st">"niña"</span> <span class="op">&amp;</span> <span class="va">hijo2</span> <span class="op">==</span> <span class="st">"niña"</span><span class="op">)</span> <span class="op">&amp;</span> <span class="op">(</span>
-               <span class="op">(</span><span class="va">hijo1</span> <span class="op">==</span> <span class="st">"niña"</span> <span class="op">&amp;</span> <span class="va">estacion1</span> <span class="op">==</span> <span class="st">"invierno"</span><span class="op">)</span> <span class="op">|</span>
-               <span class="op">(</span><span class="va">hijo2</span> <span class="op">==</span> <span class="st">"niña"</span> <span class="op">&amp;</span> <span class="va">estacion2</span> <span class="op">==</span> <span class="st">"invierno"</span><span class="op">)</span>
-           <span class="op">)</span><span class="op">)</span>
+<span class="va">n_ab</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="op">(</span><span class="va">hijo1</span> <span class="op">==</span> <span class="st">"niña"</span> <span class="op">&amp;</span> <span class="va">hijo2</span> <span class="op">==</span> <span class="st">"niña"</span><span class="op">)</span> <span class="op">&amp;</span>
+            <span class="op">(</span><span class="va">estacion1</span> <span class="op">==</span> <span class="st">"invierno"</span> <span class="op">|</span> <span class="va">estacion2</span> <span class="op">==</span> <span class="st">"invierno"</span><span class="op">)</span><span class="op">)</span>
 <span class="va">n_ab</span> <span class="op">/</span> <span class="va">n_b</span></code></pre></div>
 <pre><code>## [1] 0.4673629</code></pre>
 </div>
-<div id="monty-hall" class="section level2" number="2.2">
+<div id="ruina-del-apostador" class="section level2" number="2.2">
 <h2>
-<span class="header-section-number">2.2</span> Monty Hall<a class="anchor" aria-label="anchor" href="#monty-hall"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2.2</span> Ruina del Apostador<a class="anchor" aria-label="anchor" href="#ruina-del-apostador"><i class="fas fa-link"></i></a>
 </h2>
+<p>Dos apostadores, <span class="math inline">\(A\)</span> y <span class="math inline">\(B\)</span>, hacen una secuencia de apuestas de 1 sol.
+En cada apuesta, el apostador <span class="math inline">\(A\)</span> tiene probabilidad de ganar <span class="math inline">\(p\)</span> y el apostador <span class="math inline">\(B\)</span> tiene probabilidad de ganar <span class="math inline">\(q = 1 - p\)</span>.
+El apostador <span class="math inline">\(A\)</span> empieza con <span class="math inline">\(i\)</span> soles y el apostador <span class="math inline">\(B\)</span> empieza con <span class="math inline">\(n - i\)</span> soles.
+El juego temina cuando alguno de los apostadores queda en ruina.
+¿Cuál es la probabilidad de que <span class="math inline">\(A\)</span> pierda el juego?</p>
+<p><span class="math display">\[
+P(\{\text{A pierde}\}) = \begin{cases}
+  \frac{1 - {\left(\frac{p}{q}\right)}^{N-i}}{1 - {\left(\frac{p}{q}\right)}^{N}} &amp; p \neq 1/2 \\
+  \frac{N-i}{N} &amp; p = 1/2
+\end{cases}
+\]</span></p>
 <div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">45</span><span class="op">)</span>
-<span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">10</span><span class="op">^</span><span class="fl">5</span>
-<span class="va">k</span> <span class="op">&lt;-</span> <span class="fl">4</span>
-<span class="va">puerta_carro</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">k</span>, <span class="va">n</span>, replace <span class="op">=</span> <span class="cn">T</span><span class="op">)</span>
-<span class="va">puerta_elegida</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">k</span>, <span class="va">n</span>, replace <span class="op">=</span> <span class="cn">T</span><span class="op">)</span>
-
-<span class="va">retirar</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">puerta_elegida</span>, <span class="va">puerta_carro</span><span class="op">)</span> <span class="op">{</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="va">k</span><span class="op">)</span><span class="op">[</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">puerta_elegida</span>, <span class="va">puerta_carro</span><span class="op">)</span><span class="op">]</span>, <span class="fl">1</span><span class="op">)</span>
-<span class="op">}</span>
-
-<span class="va">puerta_retirada</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mapply.html">mapply</a></span><span class="op">(</span><span class="va">retirar</span>, <span class="va">puerta_elegida</span>, <span class="va">puerta_carro</span><span class="op">)</span></code></pre></div>
-<p>Si decido mantener la puerta</p>
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">puerta_carro</span> <span class="op">==</span> <span class="va">puerta_elegida</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 0.25151</code></pre>
-<p>Si decido cambiar de puerta</p>
-<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">cambiar</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">puerta_elegida</span>, <span class="va">puerta_retirada</span><span class="op">)</span> <span class="op">{</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="va">k</span><span class="op">)</span><span class="op">[</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">puerta_retirada</span>, <span class="va">puerta_elegida</span><span class="op">)</span><span class="op">]</span>, <span class="fl">1</span><span class="op">)</span>
-<span class="op">}</span>
-<span class="va">puerta_cambiada</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mapply.html">mapply</a></span><span class="op">(</span><span class="va">cambiar</span>, <span class="va">puerta_elegida</span>, <span class="va">puerta_retirada</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">puerta_cambiada</span> <span class="op">==</span> <span class="va">puerta_carro</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 0.37301</code></pre>
-</div>
-<div id="ruina-del-apostador" class="section level2" number="2.3">
-<h2>
-<span class="header-section-number">2.3</span> Ruina del Apostador<a class="anchor" aria-label="anchor" href="#ruina-del-apostador"><i class="fas fa-link"></i></a>
-</h2>
-<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">10</span>
 <span class="va">i</span> <span class="op">&lt;-</span> <span class="fl">3</span>
+<span class="va">p</span> <span class="op">&lt;-</span> <span class="fl">0.5</span>
 <span class="va">termina</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="fl">1000</span>, <span class="op">{</span>
   <span class="kw">while</span> <span class="op">(</span><span class="op">!</span><span class="op">(</span><span class="va">i</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="va">n</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
-    <span class="va">paso</span> <span class="op">&lt;-</span> <span class="fl">2</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">1</span><span class="op">)</span> <span class="op">-</span> <span class="fl">3</span>
+    <span class="va">paso</span> <span class="op">&lt;-</span> <span class="fl">2</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">1</span>, prob <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span> <span class="op">-</span> <span class="va">p</span>, <span class="va">p</span><span class="op">)</span><span class="op">)</span> <span class="op">-</span> <span class="fl">3</span>
     <span class="va">i</span> <span class="op">&lt;-</span> <span class="va">i</span> <span class="op">+</span> <span class="va">paso</span>
   <span class="op">}</span>
   <span class="va">i</span>
@@ -158,20 +139,92 @@ Además, asume que nacer cada una de las 4 estaciones tiene la misma probabilida
 <span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">termina</span><span class="op">)</span></code></pre></div>
 <pre><code>## termina
 ##   0  10 
-## 695 305</code></pre>
+## 718 282</code></pre>
+</div>
+<div id="monty-hall" class="section level2" number="2.3">
+<h2>
+<span class="header-section-number">2.3</span> Monty Hall<a class="anchor" aria-label="anchor" href="#monty-hall"><i class="fas fa-link"></i></a>
+</h2>
+<p>En un show de televisión, un concursante escoge una de tres puertas cerradas, dos de las cuales tienen una cabra y una tiene un carro.
+El anfitrión conoce donde está el carro, entonces abre una de las puertas restantes (que no es la puerta elegida ni la que contiene el carro) y muestra la cabra.
+Luego, se le ofrece al concursante la opción de cambiar su elección hacia la otra puerta cerrada.
+¿El concursante debería cambiar de puerta?</p>
+<p>Jugemos el juego interactivamente llamando a la función <code>monty()</code>.</p>
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">monty</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span> <span class="op">{</span>
+  <span class="va">puertas</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span>
+
+  <span class="co"># Se escoge aleatoriamente la puerta del carro</span>
+  <span class="va">puerta_carro</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, <span class="fl">1</span><span class="op">)</span>
+
+  <span class="co"># Pedimos escoger una puerta al jugador (respuesta debe ser 1, 2 o 3)</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"El anfitrión dice ‘¡escoge una puerta!’"</span><span class="op">)</span>
+  <span class="va">puerta_elegida</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/scan.html">scan</a></span><span class="op">(</span>what <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html">integer</a></span><span class="op">(</span><span class="op">)</span>, nlines <span class="op">=</span> <span class="fl">1</span>, quiet <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+
+  <span class="co"># El anfitrión retira una puerta (ni la puerta escogida ni la del carro)</span>
+  <span class="kw">if</span> <span class="op">(</span><span class="va">puerta_elegida</span> <span class="op">!=</span> <span class="va">puerta_carro</span><span class="op">)</span> <span class="op">{</span>
+    <span class="va">puerta_retirada</span> <span class="op">&lt;-</span> <span class="va">puertas</span><span class="op">[</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">puerta_elegida</span>, <span class="va">puerta_carro</span><span class="op">)</span><span class="op">]</span>
+  <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span>
+    <span class="va">puerta_retirada</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">puertas</span><span class="op">[</span><span class="op">-</span><span class="va">puerta_elegida</span><span class="op">]</span>, <span class="fl">1</span><span class="op">)</span>
+  <span class="op">}</span>
+
+  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"El anfitrión abre la puerta "</span>, <span class="va">puerta_retirada</span>,
+              <span class="st">" y muestra una cabra!"</span>, sep <span class="op">=</span> <span class="st">""</span><span class="op">)</span><span class="op">)</span>
+  <span class="va">otra_puerta</span> <span class="op">&lt;-</span> <span class="va">puertas</span><span class="op">[</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">puerta_elegida</span>, <span class="va">puerta_retirada</span><span class="op">)</span><span class="op">]</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"Quieres cambiar de puerta a la puerta"</span>, <span class="va">otra_puerta</span>, <span class="st">" (s/n)?"</span><span class="op">)</span><span class="op">)</span>
+  <span class="va">reply</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/scan.html">scan</a></span><span class="op">(</span>what <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html">character</a></span><span class="op">(</span><span class="op">)</span>, nlines <span class="op">=</span> <span class="fl">1</span>, quiet <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+
+  <span class="co"># Actua en caso se responsa "si"</span>
+  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/substr.html">substr</a></span><span class="op">(</span><span class="va">reply</span>, <span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span> <span class="op">==</span> <span class="st">"s"</span><span class="op">)</span> <span class="op">{</span>
+    <span class="va">puerta_elegida</span> <span class="op">&lt;-</span> <span class="va">puertas</span><span class="op">[</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">puerta_elegida</span>, <span class="va">puerta_retirada</span><span class="op">)</span><span class="op">]</span>
+  <span class="op">}</span>
+
+  <span class="co"># Imprimir el resultado del juego</span>
+  <span class="kw">if</span> <span class="op">(</span><span class="va">puerta_elegida</span> <span class="op">==</span> <span class="va">puerta_carro</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"Ganaste! :D"</span><span class="op">)</span>
+  <span class="kw">else</span> <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"Perdiste! :("</span><span class="op">)</span>
+<span class="op">}</span></code></pre></div>
+<p>Ahora simulemos el juego</p>
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">42</span><span class="op">)</span>
+<span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">10</span><span class="op">^</span><span class="fl">5</span>
+<span class="va">k</span> <span class="op">&lt;-</span> <span class="fl">3</span>
+<span class="va">puertas</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="va">k</span>
+<span class="va">puerta_carro</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">k</span>, <span class="va">n</span>, replace <span class="op">=</span> <span class="cn">T</span><span class="op">)</span>
+<span class="va">puerta_elegida</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">k</span>, <span class="va">n</span>, replace <span class="op">=</span> <span class="cn">T</span><span class="op">)</span>
+
+<span class="va">retirar</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">puerta_elegida</span>, <span class="va">puerta_carro</span><span class="op">)</span> <span class="op">{</span>
+  <span class="va">x</span> <span class="op">&lt;-</span> <span class="va">puertas</span><span class="op">[</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">puerta_elegida</span>, <span class="va">puerta_carro</span><span class="op">)</span><span class="op">]</span>
+  <span class="va">index</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample.int</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>, <span class="fl">1</span><span class="op">)</span>
+  <span class="va">x</span><span class="op">[</span><span class="va">index</span><span class="op">]</span>
+<span class="op">}</span>
+<span class="va">puerta_retirada</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mapply.html">mapply</a></span><span class="op">(</span><span class="va">retirar</span>, <span class="va">puerta_elegida</span>, <span class="va">puerta_carro</span><span class="op">)</span></code></pre></div>
+<p>Si decido mantener la puerta</p>
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">puerta_elegida</span> <span class="op">==</span> <span class="va">puerta_carro</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 0.33302</code></pre>
+<p>Si decido cambiar de puerta</p>
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">cambiar</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">puerta_elegida</span>, <span class="va">puerta_retirada</span><span class="op">)</span> <span class="op">{</span>
+  <span class="va">x</span> <span class="op">&lt;-</span> <span class="va">puertas</span><span class="op">[</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">puerta_elegida</span>, <span class="va">puerta_retirada</span><span class="op">)</span><span class="op">]</span>
+  <span class="va">index</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample.int</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>, <span class="fl">1</span><span class="op">)</span>
+  <span class="va">x</span><span class="op">[</span><span class="va">index</span><span class="op">]</span>
+<span class="op">}</span>
+<span class="va">puerta_elegida</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mapply.html">mapply</a></span><span class="op">(</span><span class="va">cambiar</span>, <span class="va">puerta_elegida</span>, <span class="va">puerta_retirada</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">puerta_elegida</span> <span class="op">==</span> <span class="va">puerta_carro</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 0.66698</code></pre>
 
 </div>
 </div>
   <div class="chapter-nav">
 <div class="prev"><a href="conteo-y-probabilidad.html"><span class="header-section-number">1</span> Conteo y Probabilidad</a></div>
-<div class="next"><a href="variables-aleatorias-discretas.html"><span class="header-section-number">3</span> Variables Aleatorias Discretas</a></div>
+<div class="next"><a href="variables-aleatorias.html"><span class="header-section-number">3</span> Variables Aleatorias</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
 <li><a class="nav-link" href="#probabilidad-condicional"><span class="header-section-number">2</span> Probabilidad Condicional</a></li>
 <li><a class="nav-link" href="#problema-de-los-dos-hijos"><span class="header-section-number">2.1</span> Problema de los dos hijos</a></li>
-<li><a class="nav-link" href="#monty-hall"><span class="header-section-number">2.2</span> Monty Hall</a></li>
-<li><a class="nav-link" href="#ruina-del-apostador"><span class="header-section-number">2.3</span> Ruina del Apostador</a></li>
+<li><a class="nav-link" href="#ruina-del-apostador"><span class="header-section-number">2.2</span> Ruina del Apostador</a></li>
+<li><a class="nav-link" href="#monty-hall"><span class="header-section-number">2.3</span> Monty Hall</a></li>
 </ul>
 
       <div class="book-extra">
@@ -189,7 +242,7 @@ Además, asume que nacer cada una de las 4 estaciones tiene la misma probabilida
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Apuntes</strong>" was written by Pablo Cárdenas. It was last built on 2021-09-29.</p>
+    <p>"<strong>Apuntes</strong>" was written by Pablo Cárdenas. It was last built on 2021-10-01.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

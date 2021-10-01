@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>3 Variables Aleatorias | Apuntes</title>
+<meta name="author" content="Pablo Cárdenas">
+<meta name="description" content="3.1 Distribuciones incorporadas en R Puede encontrar una lista de las distribuciones de probabilidad disponibles en el paquete stats (incorporado en R) ejecutando ?Distributions. ?Distributions...">
+<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta property="og:title" content="3 Variables Aleatorias | Apuntes">
+<meta property="og:type" content="book">
+<meta property="og:description" content="3.1 Distribuciones incorporadas en R Puede encontrar una lista de las distribuciones de probabilidad disponibles en el paquete stats (incorporado en R) ejecutando ?Distributions. ?Distributions...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="3 Variables Aleatorias | Apuntes">
+<meta name="twitter:description" content="3.1 Distribuciones incorporadas en R Puede encontrar una lista de las distribuciones de probabilidad disponibles en el paquete stats (incorporado en R) ejecutando ?Distributions. ?Distributions...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><link href="libs/_Sen-0.4.0/font.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM%20Mono&amp;display=swap" rel="stylesheet">
+<link href="libs/_Bitter-0.4.0/font.css" rel="stylesheet">
+<script src="libs/bs3compat-0.3.0/transition.js"></script><script src="libs/bs3compat-0.3.0/tabs.js"></script><script src="libs/bs3compat-0.3.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS -->
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Apuntes</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Prefacio</a></li>
+<li><a class="" href="conteo-y-probabilidad.html"><span class="header-section-number">1</span> Conteo y Probabilidad</a></li>
+<li><a class="" href="probabilidad-condicional.html"><span class="header-section-number">2</span> Probabilidad Condicional</a></li>
+<li><a class="active" href="variables-aleatorias.html"><span class="header-section-number">3</span> Variables Aleatorias</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/pablo-cardenas/apuntes-probabilidad">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="variables-aleatorias" class="section level1" number="3">
+<h1>
+<span class="header-section-number">3</span> Variables Aleatorias<a class="anchor" aria-label="anchor" href="#variables-aleatorias"><i class="fas fa-link"></i></a>
+</h1>
+<div id="distribuciones-incorporadas-en-r" class="section level2" number="3.1">
+<h2>
+<span class="header-section-number">3.1</span> Distribuciones incorporadas en R<a class="anchor" aria-label="anchor" href="#distribuciones-incorporadas-en-r"><i class="fas fa-link"></i></a>
+</h2>
+<p>Puede encontrar una lista de las distribuciones de probabilidad disponibles en el paquete <code>stats</code> (incorporado en R) ejecutando <code><a href="https://rdrr.io/r/stats/Distributions.html">?Distributions</a></code>.</p>
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="op">?</span><span class="va">Distributions</span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<caption>Distribuciones incorporadas en R</caption>
+<thead><tr class="header">
+<th align="left">Función</th>
+<th align="center">Función de R</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">Función distribución acumulada (CFD)</td>
+<td align="center"><code>pxxx</code></td>
+</tr>
+<tr class="even">
+<td align="left">Función quantil (inversa de la CFD)</td>
+<td align="center"><code>qxxx</code></td>
+</tr>
+<tr class="odd">
+<td align="left">Funcion densidad o masa de probabilidad</td>
+<td align="center"><code>dxxx</code></td>
+</tr>
+<tr class="even">
+<td align="left">Generación de variables aleatorias</td>
+<td align="center"><code>rxxx</code></td>
+</tr>
+</tbody>
+</table></div>
+<div id="distribución-normal" class="section level3" number="3.1.1">
+<h3>
+<span class="header-section-number">3.1.1</span> Distribución Normal<a class="anchor" aria-label="anchor" href="#distribuci%C3%B3n-normal"><i class="fas fa-link"></i></a>
+</h3>
+<div id="funcion-distribución-acumulada-pnorm" class="section level4" number="3.1.1.1">
+<h4>
+<span class="header-section-number">3.1.1.1</span> Funcion distribución acumulada <code>pnorm</code><a class="anchor" aria-label="anchor" href="#funcion-distribuci%C3%B3n-acumulada-pnorm"><i class="fas fa-link"></i></a>
+</h4>
+<div class="example">
+<p><span id="exm:unlabeled-div-2" class="example"><strong>Example 3.1  </strong></span>Supon que el peso de una probeta de concreto está normalmente distribuido con media 12.7kg y desviación estandar 0.45kg.
+¿Cuál es la probabilidad de que una probeta escogida aleatoriamente pese más de 13kg?</p>
+</div>
+<p><em>Parafraseo</em> Si <span class="math inline">\(X\)</span> tiene distribución <span class="math inline">\(\mathcal{N}(12.7,0.45^2)\)</span>, hallar <span class="math inline">\(P(X &gt; 13)\)</span>.</p>
+<p>Usando <code>pnorm</code></p>
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fl">1</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">pnorm</a></span><span class="op">(</span><span class="fl">13</span>, mean <span class="op">=</span> <span class="fl">12.7</span>, sd <span class="op">=</span> <span class="fl">0.45</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 0.2524925</code></pre>
+<p>:::</p>
+</div>
+<div id="función-quantil-qnorm" class="section level4" number="3.1.1.2">
+<h4>
+<span class="header-section-number">3.1.1.2</span> Función quantil <code>qnorm</code><a class="anchor" aria-label="anchor" href="#funci%C3%B3n-quantil-qnorm"><i class="fas fa-link"></i></a>
+</h4>
+<div class="example">
+<p><span id="exm:unlabeled-div-3" class="example"><strong>Example 3.2  </strong></span>Supon que las pruebas de IQ están normalmente distribuidas con media 100 y desviación estandar 15.
+¿Cuál es el 95 percentil de la distribución de IQ?</p>
+<p><em>Parafraseo</em> Si <span class="math inline">\(X\)</span> tiene distribución <span class="math inline">\(\mathcal{N}(100, 15^2)\)</span>, hallar <span class="math inline">\(F^{-1}(0.95)\)</span>.</p>
+<p>Usando <code>pnorm</code></p>
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">qnorm</a></span><span class="op">(</span><span class="fl">0.95</span>, mean <span class="op">=</span> <span class="fl">100</span>, sd <span class="op">=</span> <span class="fl">15</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 124.6728</code></pre>
+</div>
+</div>
+<div id="función-densidad-dnorm" class="section level4" number="3.1.1.3">
+<h4>
+<span class="header-section-number">3.1.1.3</span> Función densidad <code>dnorm</code><a class="anchor" aria-label="anchor" href="#funci%C3%B3n-densidad-dnorm"><i class="fas fa-link"></i></a>
+</h4>
+<p>En el caso continuo, no hay mucha necesidad de esta función, ya que para calcular probabilidades se usa <code>pnorm</code>.
+Sin embargo podemos graficarlo.</p>
+<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/curve.html">curve</a></span><span class="op">(</span><span class="va">dnorm</span>, from <span class="op">=</span> <span class="op">-</span><span class="fl">3</span>, to <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-25-1.png" width="672"></div>
+<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/curve.html">curve</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">dnorm</a></span><span class="op">(</span><span class="va">x</span>, <span class="fl">12.7</span>, <span class="fl">0.45</span><span class="op">)</span>, from <span class="op">=</span> <span class="fl">11</span>, to <span class="op">=</span> <span class="fl">14.5</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-26-1.png" width="672"></div>
+</div>
+<div id="generación-de-variables-aleatorias-rnorm" class="section level4" number="3.1.1.4">
+<h4>
+<span class="header-section-number">3.1.1.4</span> Generación de variables aleatorias <code>rnorm</code><a class="anchor" aria-label="anchor" href="#generaci%C3%B3n-de-variables-aleatorias-rnorm"><i class="fas fa-link"></i></a>
+</h4>
+<p>En el caso continuo, no hay mucha necesidad de esta función, ya que para calcular probabilidades se usa <code>pnorm</code>.
+Sin embargo podemos graficarlo.</p>
+<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">42</span><span class="op">)</span>
+<span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10000</span>, mean <span class="op">=</span> <span class="fl">12.7</span>, sd <span class="op">=</span> <span class="fl">0.45</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">x</span>, probability <span class="op">=</span> <span class="cn">T</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/curve.html">curve</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">dnorm</a></span><span class="op">(</span><span class="va">x</span>, <span class="fl">12.7</span>, <span class="fl">0.45</span><span class="op">)</span>, from <span class="op">=</span> <span class="fl">11</span>, to <span class="op">=</span> <span class="fl">14.5</span>, add <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-27-1.png" width="672"></div>
+</div>
+</div>
+<div id="distribución-binomial" class="section level3" number="3.1.2">
+<h3>
+<span class="header-section-number">3.1.2</span> Distribución Binomial<a class="anchor" aria-label="anchor" href="#distribuci%C3%B3n-binomial"><i class="fas fa-link"></i></a>
+</h3>
+<div id="función-densidad-dbinom" class="section level4" number="3.1.2.1">
+<h4>
+<span class="header-section-number">3.1.2.1</span> Función densidad <code>dbinom</code><a class="anchor" aria-label="anchor" href="#funci%C3%B3n-densidad-dbinom"><i class="fas fa-link"></i></a>
+</h4>
+<div class="example">
+<p><span id="exm:unlabeled-div-4" class="example"><strong>Example 3.3  </strong></span>Supon que un foco tiene una probabilidad de 0.2 de tener defectos.
+Supon que un contenedor contiene 25 focos
+¿Cuál es la probabilidad de que un contenedor escogido aleatoriamente tenga exactamente 1 foco defectuoso?</p>
+<p><em>Parafraseo</em> Si <span class="math inline">\(X\)</span> tiene distribución <span class="math inline">\(\mathcal{Bin}(25, 0.2)\)</span>, hallar <span class="math inline">\(P(X=1)\)</span>.</p>
+<p>Usando <code>dbinom</code></p>
+<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">dbinom</a></span><span class="op">(</span><span class="fl">1</span>, size <span class="op">=</span> <span class="fl">25</span>, prob <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 0.02361183</code></pre>
+<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">dbinom</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">25</span>, <span class="fl">25</span>, <span class="fl">0.2</span><span class="op">)</span>, type <span class="op">=</span> <span class="st">"h"</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-28-1.png" width="672"></div>
+</div>
+</div>
+<div id="función-distrubción-acumulada-pbinom" class="section level4" number="3.1.2.2">
+<h4>
+<span class="header-section-number">3.1.2.2</span> Función distrubción acumulada <code>pbinom</code><a class="anchor" aria-label="anchor" href="#funci%C3%B3n-distrubci%C3%B3n-acumulada-pbinom"><i class="fas fa-link"></i></a>
+</h4>
+<div class="example">
+<p><span id="exm:unlabeled-div-5" class="example"><strong>Example 3.4  </strong></span>Supon que un foco tiene una probabilidad de 0.2 de tener defectos.
+Supon que un contenedor contiene 25 focos.
+¿Cuál es la probabilidad de que un contenedor escogido aleatoriamente tenga a lo más un foco defectuoso?</p>
+<p><em>Parafraseo</em> Si <span class="math inline">\(X\)</span> tiene distribución <span class="math inline">\(\mathcal{Bin}(25, 0.2)\)</span>, hallar <span class="math inline">\(P(X \le 1)\)</span>.</p>
+<p>Usando <code>pbinom</code></p>
+<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">pbinom</a></span><span class="op">(</span><span class="fl">1</span>, size <span class="op">=</span> <span class="fl">25</span>, prob <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 0.02738973</code></pre>
+<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">25</span>, <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">pbinom</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">25</span>, <span class="fl">25</span>, <span class="fl">0.2</span><span class="op">)</span>, type <span class="op">=</span> <span class="st">"S"</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-29-1.png" width="672"></div>
+<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">rval</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/approxfun.html">approxfun</a></span><span class="op">(</span>
+  <span class="fl">0</span><span class="op">:</span><span class="fl">25</span>, <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">pbinom</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">25</span>, <span class="fl">25</span>, <span class="fl">0.2</span><span class="op">)</span>,
+  yleft <span class="op">=</span> <span class="fl">0</span>, yright <span class="op">=</span> <span class="fl">1</span>, ties <span class="op">=</span> <span class="st">"ordered"</span>, method <span class="op">=</span> <span class="st">"constant"</span>
+<span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">rval</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"ecdf"</span>, <span class="st">"stepfun"</span>, <span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">rval</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">rval</span>, main <span class="op">=</span> <span class="st">"Distribución Binomial"</span>, ylab <span class="op">=</span> <span class="st">"Probabilidad"</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-30-1.png" width="672"></div>
+</div>
+</div>
+<div id="función-quantile-qbinom" class="section level4" number="3.1.2.3">
+<h4>
+<span class="header-section-number">3.1.2.3</span> Función quantile <code>qbinom</code><a class="anchor" aria-label="anchor" href="#funci%C3%B3n-quantile-qbinom"><i class="fas fa-link"></i></a>
+</h4>
+<p>Para distribuciones discretas, el quantil está definido como el menor valor <span class="math inline">\(x\)</span> tal que <span class="math inline">\(F(x) \ge p\)</span>.</p>
+<div class="example">
+<p><span id="exm:unlabeled-div-6" class="example"><strong>Example 3.5  </strong></span>¿Cuál es el percentil 10, 20, … , 90 de una distribución <span class="math inline">\(\mathcal{Bin}(25, 0.2)\)</span>?</p>
+</div>
+<div class="solution">
+<p><span id="unlabeled-div-7" class="solution"><em>Solution</em>. </span>Usando <code>qbinom</code></p>
+<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">qbinom</a></span><span class="op">(</span><span class="fl">0.1</span>, size <span class="op">=</span> <span class="fl">25</span>, prob <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 3</code></pre>
+<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">qbinom</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">0.9</span>, <span class="fl">0.1</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">25</span>, prob <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 3 3 4 4 5 5 6 7 8</code></pre>
+</div>
+</div>
+<div id="generación-de-números-aleatorios-rbinom" class="section level4" number="3.1.2.4">
+<h4>
+<span class="header-section-number">3.1.2.4</span> Generación de números aleatorios <code>rbinom</code><a class="anchor" aria-label="anchor" href="#generaci%C3%B3n-de-n%C3%BAmeros-aleatorios-rbinom"><i class="fas fa-link"></i></a>
+</h4>
+<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">42</span><span class="op">)</span>
+<span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">rbinom</a></span><span class="op">(</span><span class="fl">1000</span>, size <span class="op">=</span> <span class="fl">25</span>, prob <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></code></pre></div>
+<pre><code>## x
+##   0   1   2   3   4   5   6   7   8   9  10  11  12 
+##   9  21  77 148 185 196 151  95  79  29   7   2   1</code></pre>
+<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-32-1.png" width="672"></div>
+</div>
+</div>
+</div>
+<div id="generación-de-números-aleatorios-de-otras-distribuciones" class="section level2" number="3.2">
+<h2>
+<span class="header-section-number">3.2</span> Generación de números aleatorios de otras distribuciones<a class="anchor" aria-label="anchor" href="#generaci%C3%B3n-de-n%C3%BAmeros-aleatorios-de-otras-distribuciones"><i class="fas fa-link"></i></a>
+</h2>
+<div id="transformación-inversa" class="section level3" number="3.2.1">
+<h3>
+<span class="header-section-number">3.2.1</span> Transformación inversa<a class="anchor" aria-label="anchor" href="#transformaci%C3%B3n-inversa"><i class="fas fa-link"></i></a>
+</h3>
+<p>Fuente: Christian Robert, George Casella - Montecarlo Statistical Methods - Springer</p>
+<div class="definition">
+<p><span id="def:unlabeled-div-8" class="definition"><strong>Definition 3.1  (Inversa generalizada) </strong></span>Para una función distribución <span class="math inline">\(F\)</span> en <span class="math inline">\(\mathbb{R}\)</span>, la <em>inversa generalizada</em> de <span class="math inline">\(F\)</span>, <span class="math inline">\(F^-\)</span>, está definida por
+<span class="math display">\[
+  F^{-}(u) = \inf\{x : F(x) \ge u\}.
+\]</span></p>
+</div>
+<p>El siguiente lema nos da una representación de cualquier variable como una transformación de una variable aleatoria uniforme.</p>
+<div class="lemma">
+<p><span id="lem:inverse-transformation" class="lemma"><strong>Lemma 3.1  </strong></span>Si <span class="math inline">\(U \sim \mathcal{U}_ {[0, 1]}\)</span>, entonces la variable aleatoria <span class="math inline">\(F^-(U)\)</span> tiene distribución <span class="math inline">\(F\)</span>.</p>
+</div>
+<div class="proof">
+<p><span id="unlabeled-div-9" class="proof"><em>Proof</em>. </span>Para todo <span class="math inline">\(u \in [0, 1]\)</span> y para todo <span class="math inline">\(x \in F^-([0, 1])\)</span>, la función inversa generalizada satisface
+<span class="math display">\[
+  F(F^-(u)) \ge u \text{ y } F^{-}(F(x)) \le x.
+\]</span>
+Entonces,
+<span class="math display">\[
+  \{(u, x) :  F^{-}(u) \le x \} = \{(u,x) : F(x) \ge u\}
+\]</span>
+y
+<span class="math display">\[
+  P(F^-(U) \le x) = P(U \ge F(x)) = F(x)
+\]</span></p>
+</div>
+<div class="example">
+<p><span id="exm:unlabeled-div-10" class="example"><strong>Example 3.6  (Distribución Exponencial) </strong></span>Si <span class="math inline">\(X \sim \mathcal{Exp}(1)\)</span>, así <span class="math inline">\(F(x) = 1-e^{-x}\)</span>, luego <span class="math inline">\(F^-(u) = -\log(1 - u)\)</span>.
+Entonces, por el lema <a href="variables-aleatorias.html#lem:inverse-transformation">3.1</a> <span class="math inline">\(X = F^-(U) = -\log(1 - U) = -\log(U)\)</span>.</p>
+<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">10000</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">x</span>, probability <span class="op">=</span> <span class="cn">T</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/curve.html">curve</a></span><span class="op">(</span><span class="va">dexp</span>, add <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-33-1.png" width="672"></div>
+</div>
+<div class="example">
+<p><span id="exm:unlabeled-div-11" class="example"><strong>Example 3.7  (Distribución Triangular) </strong></span>Generamos una muestra aleatoria de una distribución triangular de mínimo <span class="math inline">\(a\)</span>, moda <span class="math inline">\(b\)</span> y máximo <span class="math inline">\(c\)</span>.
+<span class="math display">\[
+  f = \begin{cases}
+    \frac{2(x-a)}{(c-a)(b-a)} &amp; x \in [a,b] \\
+    \frac{2(x-c)}{(c-a)(b-c)} &amp; x \in [b,c]
+  \end{cases}
+\]</span></p>
+<div class="sourceCode" id="cb62"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">f</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">a</span>, <span class="va">b</span>, <span class="va">c</span><span class="op">)</span> <span class="op">{</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span>
+    <span class="va">x</span> <span class="op">&lt;</span> <span class="va">b</span>,
+    <span class="fl">2</span> <span class="op">*</span> <span class="op">(</span><span class="va">x</span> <span class="op">-</span> <span class="va">a</span><span class="op">)</span> <span class="op">/</span> <span class="op">(</span><span class="op">(</span><span class="va">c</span> <span class="op">-</span> <span class="va">a</span><span class="op">)</span> <span class="op">*</span> <span class="op">(</span><span class="va">b</span> <span class="op">-</span> <span class="va">a</span><span class="op">)</span><span class="op">)</span>,
+    <span class="fl">2</span> <span class="op">*</span> <span class="op">(</span><span class="va">x</span> <span class="op">-</span> <span class="va">c</span><span class="op">)</span> <span class="op">/</span> <span class="op">(</span><span class="op">(</span><span class="va">c</span> <span class="op">-</span> <span class="va">a</span><span class="op">)</span> <span class="op">*</span> <span class="op">(</span><span class="va">b</span> <span class="op">-</span> <span class="va">c</span><span class="op">)</span><span class="op">)</span>
+  <span class="op">)</span>
+<span class="op">}</span>
+<span class="va">a</span> <span class="op">&lt;-</span> <span class="fl">1</span>
+<span class="va">b</span> <span class="op">&lt;-</span> <span class="fl">2</span>
+<span class="va">c</span> <span class="op">&lt;-</span> <span class="fl">3</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/curve.html">curve</a></span><span class="op">(</span><span class="fu">f</span><span class="op">(</span><span class="va">x</span>, <span class="va">a</span>, <span class="va">b</span>, <span class="va">c</span><span class="op">)</span>, from <span class="op">=</span> <span class="va">a</span>, to <span class="op">=</span> <span class="va">c</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-34-1.png" width="672"></div>
+<p><span class="math display">\[
+F^-(p) = \begin{cases}
+\sqrt{(c-a)(b-a)p} + a &amp; p \in \left[0, \frac{b-a}{c-a}\right] \\
+-\sqrt{(c-a)(b-c)(p-1)} + c &amp; p \in \left[\frac{b-a}{c-a}, 1\right]
+\end{cases}
+\]</span></p>
+<div class="sourceCode" id="cb63"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">42</span><span class="op">)</span>
+<span class="va">F_inv</span> <span class="op">&lt;-</span>  <span class="kw">function</span><span class="op">(</span><span class="va">p</span>, <span class="va">a</span>, <span class="va">b</span>, <span class="va">c</span><span class="op">)</span> <span class="op">{</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span>
+    <span class="va">p</span> <span class="op">&lt;</span> <span class="op">(</span><span class="va">b</span> <span class="op">-</span> <span class="va">a</span><span class="op">)</span> <span class="op">/</span> <span class="op">(</span><span class="va">c</span> <span class="op">-</span> <span class="va">a</span><span class="op">)</span>,
+    <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="op">(</span><span class="va">c</span> <span class="op">-</span> <span class="va">a</span><span class="op">)</span> <span class="op">*</span> <span class="op">(</span><span class="va">b</span> <span class="op">-</span> <span class="va">a</span><span class="op">)</span> <span class="op">*</span> <span class="va">p</span><span class="op">)</span> <span class="op">+</span> <span class="va">a</span>,
+    <span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="op">(</span><span class="va">c</span> <span class="op">-</span> <span class="va">a</span><span class="op">)</span> <span class="op">*</span> <span class="op">(</span><span class="va">b</span> <span class="op">-</span> <span class="va">c</span><span class="op">)</span> <span class="op">*</span> <span class="op">(</span><span class="va">p</span> <span class="op">-</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="va">c</span>
+  <span class="op">)</span>
+<span class="op">}</span>
+<span class="va">x</span> <span class="op">&lt;-</span> <span class="fu">F_inv</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">10000</span><span class="op">)</span>, a <span class="op">=</span> <span class="fl">1</span>, b <span class="op">=</span> <span class="fl">2</span>, c <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">x</span>, probability <span class="op">=</span> <span class="cn">T</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/curve.html">curve</a></span><span class="op">(</span><span class="fu">f</span><span class="op">(</span><span class="va">x</span>, <span class="va">a</span>, <span class="va">b</span>, <span class="va">c</span><span class="op">)</span>, from <span class="op">=</span> <span class="va">a</span>, to <span class="op">=</span> <span class="va">c</span>, add <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-35-1.png" width="672"></div>
+</div>
+
+</div>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="probabilidad-condicional.html"><span class="header-section-number">2</span> Probabilidad Condicional</a></div>
+<div class="empty"></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#variables-aleatorias"><span class="header-section-number">3</span> Variables Aleatorias</a></li>
+<li>
+<a class="nav-link" href="#distribuciones-incorporadas-en-r"><span class="header-section-number">3.1</span> Distribuciones incorporadas en R</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#distribuci%C3%B3n-normal"><span class="header-section-number">3.1.1</span> Distribución Normal</a></li>
+<li><a class="nav-link" href="#distribuci%C3%B3n-binomial"><span class="header-section-number">3.1.2</span> Distribución Binomial</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#generaci%C3%B3n-de-n%C3%BAmeros-aleatorios-de-otras-distribuciones"><span class="header-section-number">3.2</span> Generación de números aleatorios de otras distribuciones</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#transformaci%C3%B3n-inversa"><span class="header-section-number">3.2.1</span> Transformación inversa</a></li></ul>
+</li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/pablo-cardenas/apuntes-probabilidad/blob/main/03-variables-aleatorias.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/pablo-cardenas/apuntes-probabilidad/edit/main/03-variables-aleatorias.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Apuntes</strong>" was written by Pablo Cárdenas. It was last built on 2021-10-01.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>
