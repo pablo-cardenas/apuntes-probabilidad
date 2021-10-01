@@ -1,0 +1,243 @@
+# Variables Aleatorias
+
+## Distribuciones incorporadas en R
+
+Puede encontrar una lista de las distribuciones de probabilidad disponibles en el paquete `stats` (incorporado en R) ejecutando `?Distributions`.
+
+```{r, eval=FALSE}
+?Distributions
+```
+
+Table: Distribuciones incorporadas en R
+
+Función                                   Función de R
+---------------------------------------- --------------
+Función distribución acumulada (CFD)         `pxxx`
+Función quantil (inversa de la CFD)          `qxxx`
+Funcion densidad o masa de probabilidad      `dxxx`
+Generación de variables aleatorias           `rxxx`
+
+
+### Distribución Normal
+
+#### Funcion distribución acumulada `pnorm`
+
+::: {.example}
+Supon que el peso de una probeta de concreto está normalmente distribuido con media 12.7kg y desviación estandar 0.45kg.
+¿Cuál es la probabilidad de que una probeta escogida aleatoriamente pese más de 13kg?
+:::
+
+*Parafraseo* Si \(X\) tiene distribución \(\mathcal{N}(12.7,0.45^2)\), hallar \(P(X > 13)\).
+
+Usando `pnorm`
+
+```{r}
+1 - pnorm(13, mean = 12.7, sd = 0.45)
+```
+:::
+
+
+#### Función quantil `qnorm`
+
+::: {.example}
+Supon que las pruebas de IQ están normalmente distribuidas con media 100 y desviación estandar 15.
+¿Cuál es el 95 percentil de la distribución de IQ?
+
+*Parafraseo* Si \(X\) tiene distribución \(\mathcal{N}(100, 15^2)\), hallar \(F^{-1}(0.95)\).
+
+Usando `pnorm`
+
+```{r}
+qnorm(0.95, mean = 100, sd = 15)
+```
+:::
+
+#### Función densidad `dnorm`
+
+En el caso continuo, no hay mucha necesidad de esta función, ya que para calcular probabilidades se usa `pnorm`.
+Sin embargo podemos graficarlo.
+
+```{r}
+curve(dnorm, from = -3, to = 3)
+```
+
+```{r}
+curve(dnorm(x, 12.7, 0.45), from = 11, to = 14.5)
+```
+
+#### Generación de variables aleatorias `rnorm`
+
+En el caso continuo, no hay mucha necesidad de esta función, ya que para calcular probabilidades se usa `pnorm`.
+Sin embargo podemos graficarlo.
+
+```{r}
+set.seed(42)
+x <- rnorm(10000, mean = 12.7, sd = 0.45)
+hist(x, probability = T)
+curve(dnorm(x, 12.7, 0.45), from = 11, to = 14.5, add = T)
+```
+
+
+### Distribución Binomial
+
+#### Función densidad `dbinom`
+
+::: {.example}
+Supon que un foco tiene una probabilidad de 0.2 de tener defectos.
+Supon que un contenedor contiene 25 focos
+¿Cuál es la probabilidad de que un contenedor escogido aleatoriamente tenga exactamente 1 foco defectuoso?
+
+*Parafraseo* Si \(X\) tiene distribución \(\mathcal{Bin}(25, 0.2)\), hallar \(P(X=1)\).
+
+Usando `dbinom`
+
+```{r}
+dbinom(1, size = 25, prob = 0.2)
+plot(dbinom(1:25, 25, 0.2), type = "h")
+```
+:::
+
+
+#### Función distrubción acumulada `pbinom`
+
+::: {.example}
+Supon que un foco tiene una probabilidad de 0.2 de tener defectos.
+Supon que un contenedor contiene 25 focos.
+¿Cuál es la probabilidad de que un contenedor escogido aleatoriamente tenga a lo más un foco defectuoso?
+
+*Parafraseo* Si \(X\) tiene distribución \(\mathcal{Bin}(25, 0.2)\), hallar \(P(X \le 1)\).
+
+Usando `pbinom`
+
+```{r}
+pbinom(1, size = 25, prob = 0.2)
+plot(0:25, pbinom(0:25, 25, 0.2), type = "S")
+```
+
+```{r}
+rval <- approxfun(
+  0:25, pbinom(0:25, 25, 0.2),
+  yleft = 0, yright = 1, ties = "ordered", method = "constant"
+)
+class(rval) <- c("ecdf", "stepfun", class(rval))
+plot(rval, main = "Distribución Binomial", ylab = "Probabilidad")
+```
+:::
+
+
+#### Función quantile `qbinom`
+
+Para distribuciones discretas, el quantil está definido como el menor valor \(x\) tal que \(F(x) \ge p\).
+
+::: {.example}
+¿Cuál es el percentil 10, 20, ... , 90 de una distribución \(\mathcal{Bin}(25, 0.2)\)?
+:::
+
+::: {.solution}
+Usando `qbinom`
+
+```{r}
+qbinom(0.1, size = 25, prob = 0.2)
+qbinom(seq(0.1, 0.9, 0.1), size = 25, prob = 0.2)
+```
+:::
+
+
+#### Generación de números aleatorios `rbinom`
+
+```{r}
+set.seed(42)
+x <- rbinom(1000, size = 25, prob = 0.2)
+table(x)
+plot(table(x))
+```
+
+## Generación de números aleatorios de otras distribuciones
+
+### Transformación inversa
+
+Fuente: Christian Robert, George Casella - Montecarlo Statistical Methods - Springer
+
+:::{ .definition name="Inversa generalizada" }
+Para una función distribución \(F\) en \(\mathbb{R}\), la _inversa generalizada_ de \(F\), \(F^-\), está definida por
+\[
+  F^{-}(u) = \inf\{x : F(x) \ge u\}.
+\]
+:::
+
+El siguiente lema nos da una representación de cualquier variable como una transformación de una variable aleatoria uniforme.
+
+::: { .lemma #inverse-transformation }
+Si \(U \sim \mathcal{U}_ {[0, 1]}\), entonces la variable aleatoria \(F^-(U)\) tiene distribución \(F\).
+:::
+
+::: { .proof }
+Para todo \(u \in [0, 1]\) y para todo \(x \in F^-([0, 1])\), la función inversa generalizada satisface
+\[
+  F(F^-(u)) \ge u \text{ y } F^{-}(F(x)) \le x.
+\]
+Entonces,
+\[
+  \{(u, x) :  F^{-}(u) \le x \} = \{(u,x) : F(x) \ge u\}
+\]
+y
+\[
+  P(F^-(U) \le x) = P(U \ge F(x)) = F(x)
+\]
+:::
+
+::: {.example name="Distribución Exponencial"}
+Si \( X \sim \mathcal{Exp}(1)\), así \(F(x) = 1-e^{-x}\), luego \(F^-(u) = -\log(1 - u)\).
+Entonces, por el lema \@ref(lem:inverse-transformation) \(X = F^-(U) = -\log(1 - U) = -\log(U)\).
+
+```{r}
+x <- -log(runif(10000))
+hist(x, probability = T)
+curve(dexp, add = T)
+```
+:::
+
+::: {.example name="Distribución Triangular"}
+Generamos una muestra aleatoria de una distribución triangular de mínimo \(a\), moda \(b\) y máximo \(c\).
+\[
+  f = \begin{cases}
+    \frac{2(x-a)}{(c-a)(b-a)} & x \in [a,b] \\
+    \frac{2(x-c)}{(c-a)(b-c)} & x \in [b,c]
+  \end{cases}
+\]
+
+```{r}
+f <- function(x, a, b, c) {
+  ifelse(
+    x < b,
+    2 * (x - a) / ((c - a) * (b - a)),
+    2 * (x - c) / ((c - a) * (b - c))
+  )
+}
+a <- 1
+b <- 2
+c <- 3
+curve(f(x, a, b, c), from = a, to = c)
+```
+
+\[
+F^-(p) = \begin{cases}
+\sqrt{(c-a)(b-a)p} + a & p \in \left[0, \frac{b-a}{c-a}\right] \\
+-\sqrt{(c-a)(b-c)(p-1)} + c & p \in \left[\frac{b-a}{c-a}, 1\right]
+\end{cases}
+\]
+
+```{r}
+set.seed(42)
+F_inv <-  function(p, a, b, c) {
+  ifelse(
+    p < (b - a) / (c - a),
+    sqrt((c - a) * (b - a) * p) + a,
+    -sqrt((c - a) * (b - c) * (p - 1)) + c
+  )
+}
+x <- F_inv(runif(10000), a = 1, b = 2, c = 3)
+hist(x, probability = T)
+curve(f(x, a, b, c), from = a, to = c, add = T)
+```
+:::

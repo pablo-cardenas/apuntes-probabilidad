@@ -55,54 +55,114 @@ estacion2 <- sample(estaciones, size = n, replace = T)
 
 n_b <- sum((hijo1 == "niña" & estacion1 == "invierno") |
            (hijo2 == "niña" & estacion2 == "invierno"))
-n_ab <- sum((hijo1 == "niña" & hijo2 == "niña") & (
-               (hijo1 == "niña" & estacion1 == "invierno") |
-               (hijo2 == "niña" & estacion2 == "invierno")
-           ))
+n_ab <- sum((hijo1 == "niña" & hijo2 == "niña") &
+            (estacion1 == "invierno" | estacion2 == "invierno"))
 n_ab / n_b
-```
-
-## Monty Hall
-
-```{r}
-set.seed(45)
-n <- 10^5
-k <- 4
-puerta_carro <- sample(k, n, replace = T)
-puerta_elegida <- sample(k, n, replace = T)
-
-retirar <- function(puerta_elegida, puerta_carro) {
-  sample((1:k)[-c(puerta_elegida, puerta_carro)], 1)
-}
-
-puerta_retirada <- mapply(retirar, puerta_elegida, puerta_carro)
-```
-
-Si decido mantener la puerta
-```{r}
-mean(puerta_carro == puerta_elegida)
-```
-
-Si decido cambiar de puerta
-```{r}
-cambiar <- function(puerta_elegida, puerta_retirada) {
-  sample((1:k)[-c(puerta_retirada, puerta_elegida)], 1)
-}
-puerta_cambiada <- mapply(cambiar, puerta_elegida, puerta_retirada)
-mean(puerta_cambiada == puerta_carro)
 ```
 
 ## Ruina del Apostador
 
+Dos apostadores, \(A\) y \(B\), hacen una secuencia de apuestas de 1 sol.
+En cada apuesta, el apostador \(A\) tiene probabilidad de ganar \(p\) y el apostador \(B\) tiene probabilidad de ganar \(q = 1 - p\).
+El apostador \(A\) empieza con \(i\) soles y el apostador \(B\) empieza con \(n - i\) soles.
+El juego temina cuando alguno de los apostadores queda en ruina.
+¿Cuál es la probabilidad de que \(A\) pierda el juego?
+
+\[
+P(\{\text{A pierde}\}) = \begin{cases}
+  \frac{1 - {\left(\frac{p}{q}\right)}^{N-i}}{1 - {\left(\frac{p}{q}\right)}^{N}} & p \neq 1/2 \\
+  \frac{N-i}{N} & p = 1/2
+\end{cases}
+\]
+
 ```{r}
 n <- 10
 i <- 3
+p <- 0.5
 termina <- replicate(1000, {
   while (!(i %in% c(0, n))) {
-    paso <- 2 * sample(2, 1) - 3
+    paso <- 2 * sample(2, 1, prob = c(1 - p, p)) - 3
     i <- i + paso
   }
   i
 })
 table(termina)
+```
+
+
+## Monty Hall
+
+En un show de televisión, un concursante escoge una de tres puertas cerradas, dos de las cuales tienen una cabra y una tiene un carro.
+El anfitrión conoce donde está el carro, entonces abre una de las puertas restantes (que no es la puerta elegida ni la que contiene el carro) y muestra la cabra.
+Luego, se le ofrece al concursante la opción de cambiar su elección hacia la otra puerta cerrada.
+¿El concursante debería cambiar de puerta?
+
+Jugemos el juego interactivamente llamando a la función `monty()`.
+```{r}
+monty <- function() {
+  puertas <- 1:3
+
+  # Se escoge aleatoriamente la puerta del carro
+  puerta_carro <- sample(1:3, 1)
+
+  # Pedimos escoger una puerta al jugador (respuesta debe ser 1, 2 o 3)
+  print("El anfitrión dice ‘¡escoge una puerta!’")
+  puerta_elegida <- scan(what = integer(), nlines = 1, quiet = TRUE)
+
+  # El anfitrión retira una puerta (ni la puerta escogida ni la del carro)
+  if (puerta_elegida != puerta_carro) {
+    puerta_retirada <- puertas[-c(puerta_elegida, puerta_carro)]
+  } else {
+    puerta_retirada <- sample(puertas[-puerta_elegida], 1)
+  }
+
+  print(paste("El anfitrión abre la puerta ", puerta_retirada,
+              " y muestra una cabra!", sep = ""))
+  otra_puerta <- puertas[-c(puerta_elegida, puerta_retirada)]
+  print(paste("Quieres cambiar de puerta a la puerta", otra_puerta, " (s/n)?"))
+  reply <- scan(what = character(), nlines = 1, quiet = TRUE)
+
+  # Actua en caso se responsa "si"
+  if (substr(reply, 1, 1) == "s") {
+    puerta_elegida <- puertas[-c(puerta_elegida, puerta_retirada)]
+  }
+
+  # Imprimir el resultado del juego
+  if (puerta_elegida == puerta_carro) print("Ganaste! :D")
+  else print("Perdiste! :(")
+}
+```
+
+Ahora simulemos el juego
+
+```{r}
+set.seed(42)
+n <- 10^5
+k <- 3
+puertas <- 1:k
+puerta_carro <- sample(k, n, replace = T)
+puerta_elegida <- sample(k, n, replace = T)
+
+retirar <- function(puerta_elegida, puerta_carro) {
+  x <- puertas[-c(puerta_elegida, puerta_carro)]
+  index <- sample.int(length(x), 1)
+  x[index]
+}
+puerta_retirada <- mapply(retirar, puerta_elegida, puerta_carro)
+```
+
+Si decido mantener la puerta
+```{r}
+mean(puerta_elegida == puerta_carro)
+```
+
+Si decido cambiar de puerta
+```{r}
+cambiar <- function(puerta_elegida, puerta_retirada) {
+  x <- puertas[-c(puerta_elegida, puerta_retirada)]
+  index <- sample.int(length(x), 1)
+  x[index]
+}
+puerta_elegida <- mapply(cambiar, puerta_elegida, puerta_retirada)
+mean(puerta_elegida == puerta_carro)
 ```

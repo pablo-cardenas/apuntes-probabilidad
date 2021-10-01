@@ -48,7 +48,6 @@ mean(x)
 ```
 
 
-
 ## Matching problem de De Montmort
 
 Considera un mazo de $n$ cartas bien barajadas y etiquetadas del $1$ al $n$.
@@ -102,26 +101,6 @@ x <- replicate(20000, {
 mean(x)
 ```
 
-## Problema de Newton-Pepys
-
-```{r}
-set.seed(42)
-x <- replicate(10000, any(sample(6, 6, replace = T) == 6))
-mean(x)
-```
-
-```{r}
-set.seed(42)
-x <- replicate(10000, sum(sample(6, 12, replace = T) == 6) >= 2)
-mean(x)
-```
-
-```{r}
-set.seed(42)
-x <- replicate(10000, sum(sample(6, 18, replace = T) == 6) >= 3)
-mean(x)
-```
-
 
 ## Lema de Borel-Cantelli
 
@@ -131,11 +110,9 @@ entonces \(\displaystyle\mathrm{P}(A_n\text{ rec.}) = 1 \)
 :::
 
 
-### Ejemplo
+::: { .example }
 Sean \(q \in \mathbb{N}\), \( \Omega = \{0, 1\}^\mathbb{N}\) y  \(A_n = \{\omega \in \Omega \,|\, \omega_{nq+1} = \omega_{nq+2} = \cdots = \omega_{(n+1)q-1} = 1\}\).
 Luego, por el lema \@ref(lem:borel-cantelli), \(\displaystyle\mathrm{P}(A_n\text{ rec.}) = 1 \).
-
-### Simulación del ejemplo
 
 Digamos que \( q = 4\).
 En una muestra \( \omega \), se cumplir que \(A_n\) sea recurrente.
@@ -189,3 +166,4 @@ color <- rep(ifelse(exito, "red", "black"), each = q)
 cex <- rep(ifelse(exito, 4, 1), each = q)
 plot(monedas_lanzadas, pch = ".", col = color, cex = cex)
 ```
+:::
