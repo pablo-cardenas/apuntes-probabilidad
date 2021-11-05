@@ -14,12 +14,12 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="3 Variables Aleatorias | Apuntes">
 <meta name="twitter:description" content="3.1 Distribuciones incorporadas en R Puede encontrar una lista de las distribuciones de probabilidad disponibles en el paquete stats (incorporado en R) ejecutando ?Distributions. ?Distributions...">
-<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><link href="libs/_Sen-0.4.0/font.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=DM%20Mono&amp;display=swap" rel="stylesheet">
 <link href="libs/_Bitter-0.4.0/font.css" rel="stylesheet">
-<script src="libs/bs3compat-0.3.0/transition.js"></script><script src="libs/bs3compat-0.3.0/tabs.js"></script><script src="libs/bs3compat-0.3.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS -->
 </head>
 <body data-spy="scroll" data-target="#toc">
@@ -46,6 +46,7 @@
 <li><a class="" href="conteo-y-probabilidad.html"><span class="header-section-number">1</span> Conteo y Probabilidad</a></li>
 <li><a class="" href="probabilidad-condicional.html"><span class="header-section-number">2</span> Probabilidad Condicional</a></li>
 <li><a class="active" href="variables-aleatorias.html"><span class="header-section-number">3</span> Variables Aleatorias</a></li>
+<li><a class="" href="percolation.html"><span class="header-section-number">4</span> Percolation</a></li>
 </ul>
 
         <div class="book-extra">
@@ -53,11 +54,11 @@
         </div>
       </nav>
 </div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="variables-aleatorias" class="section level1" number="3">
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="variables-aleatorias" class="section level1">
 <h1>
 <span class="header-section-number">3</span> Variables Aleatorias<a class="anchor" aria-label="anchor" href="#variables-aleatorias"><i class="fas fa-link"></i></a>
 </h1>
-<div id="distribuciones-incorporadas-en-r" class="section level2" number="3.1">
+<div id="distribuciones-incorporadas-en-r" class="section level2">
 <h2>
 <span class="header-section-number">3.1</span> Distribuciones incorporadas en R<a class="anchor" aria-label="anchor" href="#distribuciones-incorporadas-en-r"><i class="fas fa-link"></i></a>
 </h2>
@@ -89,11 +90,11 @@
 </tr>
 </tbody>
 </table></div>
-<div id="distribución-normal" class="section level3" number="3.1.1">
+<div id="distribución-normal" class="section level3">
 <h3>
 <span class="header-section-number">3.1.1</span> Distribución Normal<a class="anchor" aria-label="anchor" href="#distribuci%C3%B3n-normal"><i class="fas fa-link"></i></a>
 </h3>
-<div id="funcion-distribución-acumulada-pnorm" class="section level4" number="3.1.1.1">
+<div id="funcion-distribución-acumulada-pnorm" class="section level4">
 <h4>
 <span class="header-section-number">3.1.1.1</span> Funcion distribución acumulada <code>pnorm</code><a class="anchor" aria-label="anchor" href="#funcion-distribuci%C3%B3n-acumulada-pnorm"><i class="fas fa-link"></i></a>
 </h4>
@@ -108,7 +109,7 @@
 <pre><code>## [1] 0.2524925</code></pre>
 <p>:::</p>
 </div>
-<div id="función-quantil-qnorm" class="section level4" number="3.1.1.2">
+<div id="función-quantil-qnorm" class="section level4">
 <h4>
 <span class="header-section-number">3.1.1.2</span> Función quantil <code>qnorm</code><a class="anchor" aria-label="anchor" href="#funci%C3%B3n-quantil-qnorm"><i class="fas fa-link"></i></a>
 </h4>
@@ -122,7 +123,7 @@
 <pre><code>## [1] 124.6728</code></pre>
 </div>
 </div>
-<div id="función-densidad-dnorm" class="section level4" number="3.1.1.3">
+<div id="función-densidad-dnorm" class="section level4">
 <h4>
 <span class="header-section-number">3.1.1.3</span> Función densidad <code>dnorm</code><a class="anchor" aria-label="anchor" href="#funci%C3%B3n-densidad-dnorm"><i class="fas fa-link"></i></a>
 </h4>
@@ -135,7 +136,7 @@ Sin embargo podemos graficarlo.</p>
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/curve.html">curve</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">dnorm</a></span><span class="op">(</span><span class="va">x</span>, <span class="fl">12.7</span>, <span class="fl">0.45</span><span class="op">)</span>, from <span class="op">=</span> <span class="fl">11</span>, to <span class="op">=</span> <span class="fl">14.5</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-26-1.png" width="672"></div>
 </div>
-<div id="generación-de-variables-aleatorias-rnorm" class="section level4" number="3.1.1.4">
+<div id="generación-de-variables-aleatorias-rnorm" class="section level4">
 <h4>
 <span class="header-section-number">3.1.1.4</span> Generación de variables aleatorias <code>rnorm</code><a class="anchor" aria-label="anchor" href="#generaci%C3%B3n-de-variables-aleatorias-rnorm"><i class="fas fa-link"></i></a>
 </h4>
@@ -149,11 +150,11 @@ Sin embargo podemos graficarlo.</p>
 <div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-27-1.png" width="672"></div>
 </div>
 </div>
-<div id="distribución-binomial" class="section level3" number="3.1.2">
+<div id="distribución-binomial" class="section level3">
 <h3>
 <span class="header-section-number">3.1.2</span> Distribución Binomial<a class="anchor" aria-label="anchor" href="#distribuci%C3%B3n-binomial"><i class="fas fa-link"></i></a>
 </h3>
-<div id="función-densidad-dbinom" class="section level4" number="3.1.2.1">
+<div id="función-densidad-dbinom" class="section level4">
 <h4>
 <span class="header-section-number">3.1.2.1</span> Función densidad <code>dbinom</code><a class="anchor" aria-label="anchor" href="#funci%C3%B3n-densidad-dbinom"><i class="fas fa-link"></i></a>
 </h4>
@@ -167,11 +168,11 @@ Supon que un contenedor contiene 25 focos
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">dbinom</a></span><span class="op">(</span><span class="fl">1</span>, size <span class="op">=</span> <span class="fl">25</span>, prob <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 0.02361183</code></pre>
 <div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">dbinom</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">25</span>, <span class="fl">25</span>, <span class="fl">0.2</span><span class="op">)</span>, type <span class="op">=</span> <span class="st">"h"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">dbinom</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">25</span>, <span class="fl">25</span>, <span class="fl">0.2</span><span class="op">)</span>, type <span class="op">=</span> <span class="st">"h"</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-28-1.png" width="672"></div>
 </div>
 </div>
-<div id="función-distrubción-acumulada-pbinom" class="section level4" number="3.1.2.2">
+<div id="función-distrubción-acumulada-pbinom" class="section level4">
 <h4>
 <span class="header-section-number">3.1.2.2</span> Función distrubción acumulada <code>pbinom</code><a class="anchor" aria-label="anchor" href="#funci%C3%B3n-distrubci%C3%B3n-acumulada-pbinom"><i class="fas fa-link"></i></a>
 </h4>
@@ -185,7 +186,7 @@ Supon que un contenedor contiene 25 focos.
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">pbinom</a></span><span class="op">(</span><span class="fl">1</span>, size <span class="op">=</span> <span class="fl">25</span>, prob <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 0.02738973</code></pre>
 <div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">25</span>, <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">pbinom</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">25</span>, <span class="fl">25</span>, <span class="fl">0.2</span><span class="op">)</span>, type <span class="op">=</span> <span class="st">"S"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">25</span>, <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">pbinom</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">25</span>, <span class="fl">25</span>, <span class="fl">0.2</span><span class="op">)</span>, type <span class="op">=</span> <span class="st">"S"</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-29-1.png" width="672"></div>
 <div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">rval</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/approxfun.html">approxfun</a></span><span class="op">(</span>
@@ -193,11 +194,11 @@ Supon que un contenedor contiene 25 focos.
   yleft <span class="op">=</span> <span class="fl">0</span>, yright <span class="op">=</span> <span class="fl">1</span>, ties <span class="op">=</span> <span class="st">"ordered"</span>, method <span class="op">=</span> <span class="st">"constant"</span>
 <span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">rval</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"ecdf"</span>, <span class="st">"stepfun"</span>, <span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">rval</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">rval</span>, main <span class="op">=</span> <span class="st">"Distribución Binomial"</span>, ylab <span class="op">=</span> <span class="st">"Probabilidad"</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span><span class="op">(</span><span class="va">rval</span>, main <span class="op">=</span> <span class="st">"Distribución Binomial"</span>, ylab <span class="op">=</span> <span class="st">"Probabilidad"</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-30-1.png" width="672"></div>
 </div>
 </div>
-<div id="función-quantile-qbinom" class="section level4" number="3.1.2.3">
+<div id="función-quantile-qbinom" class="section level4">
 <h4>
 <span class="header-section-number">3.1.2.3</span> Función quantile <code>qbinom</code><a class="anchor" aria-label="anchor" href="#funci%C3%B3n-quantile-qbinom"><i class="fas fa-link"></i></a>
 </h4>
@@ -215,7 +216,7 @@ Supon que un contenedor contiene 25 focos.
 <pre><code>## [1] 3 3 4 4 5 5 6 7 8</code></pre>
 </div>
 </div>
-<div id="generación-de-números-aleatorios-rbinom" class="section level4" number="3.1.2.4">
+<div id="generación-de-números-aleatorios-rbinom" class="section level4">
 <h4>
 <span class="header-section-number">3.1.2.4</span> Generación de números aleatorios <code>rbinom</code><a class="anchor" aria-label="anchor" href="#generaci%C3%B3n-de-n%C3%BAmeros-aleatorios-rbinom"><i class="fas fa-link"></i></a>
 </h4>
@@ -227,16 +228,16 @@ Supon que un contenedor contiene 25 focos.
 ##   0   1   2   3   4   5   6   7   8   9  10  11  12 
 ##   9  21  77 148 185 196 151  95  79  29   7   2   1</code></pre>
 <div class="sourceCode" id="cb60"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="_main_files/figure-html/unnamed-chunk-32-1.png" width="672"></div>
 </div>
 </div>
 </div>
-<div id="generación-de-números-aleatorios-de-otras-distribuciones" class="section level2" number="3.2">
+<div id="generación-de-números-aleatorios-de-otras-distribuciones" class="section level2">
 <h2>
 <span class="header-section-number">3.2</span> Generación de números aleatorios de otras distribuciones<a class="anchor" aria-label="anchor" href="#generaci%C3%B3n-de-n%C3%BAmeros-aleatorios-de-otras-distribuciones"><i class="fas fa-link"></i></a>
 </h2>
-<div id="transformación-inversa" class="section level3" number="3.2.1">
+<div id="transformación-inversa" class="section level3">
 <h3>
 <span class="header-section-number">3.2.1</span> Transformación inversa<a class="anchor" aria-label="anchor" href="#transformaci%C3%B3n-inversa"><i class="fas fa-link"></i></a>
 </h3>
@@ -321,7 +322,7 @@ F^-(p) = \begin{cases}
 </div>
   <div class="chapter-nav">
 <div class="prev"><a href="probabilidad-condicional.html"><span class="header-section-number">2</span> Probabilidad Condicional</a></div>
-<div class="empty"></div>
+<div class="next"><a href="percolation.html"><span class="header-section-number">4</span> Percolation</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
@@ -352,7 +353,7 @@ F^-(p) = \begin{cases}
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Apuntes</strong>" was written by Pablo Cárdenas. It was last built on 2021-10-01.</p>
+    <p>"<strong>Apuntes</strong>" was written by Pablo Cárdenas. It was last built on 2021-11-05.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

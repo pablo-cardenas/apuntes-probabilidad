@@ -9,6 +9,13 @@ def:unlabeled-div-8
 lem:inverse-transformation
 exm:unlabeled-div-10
 exm:unlabeled-div-11
+def:unlabeled-div-12
+def:unlabeled-div-13
+def:unlabeled-div-14
+lem:unlabeled-div-15
+lem:unlabeled-div-16
+lem:unlabeled-div-17
+lem:unlabeled-div-18
 conteo-y-probabilidad
 problema-de-cumpleaños
 usando-un-contador
@@ -36,3 +43,5 @@ función-quantile-qbinom
 generación-de-números-aleatorios-rbinom
 generación-de-números-aleatorios-de-otras-distribuciones
 transformación-inversa
+percolation
+bond-percolation

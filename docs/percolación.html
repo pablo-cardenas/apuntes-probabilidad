@@ -4,16 +4,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Prefacio | Apuntes</title>
+<title>4 Percolación | Apuntes</title>
 <meta name="author" content="Pablo Cárdenas">
-<meta name="description" content="This is a minimal example of using the bookdown package to write a book.">
+<meta name="description" content="4.1 Bond Percolation Posible motivación: Imagina que un vértice de una malla entera \(d\)-dimensional está ocupado por una persona y que dos vecinos son amigos con una probabilidad fija \(p\),...">
 <meta name="generator" content="bookdown 0.24 with bs4_book()">
-<meta property="og:title" content="Prefacio | Apuntes">
+<meta property="og:title" content="4 Percolación | Apuntes">
 <meta property="og:type" content="book">
-<meta property="og:description" content="This is a minimal example of using the bookdown package to write a book.">
+<meta property="og:description" content="4.1 Bond Percolation Posible motivación: Imagina que un vértice de una malla entera \(d\)-dimensional está ocupado por una persona y que dos vecinos son amigos con una probabilidad fija \(p\),...">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Prefacio | Apuntes">
-<meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book.">
+<meta name="twitter:title" content="4 Percolación | Apuntes">
+<meta name="twitter:description" content="4.1 Bond Percolation Posible motivación: Imagina que un vértice de una malla entera \(d\)-dimensional está ocupado por una persona y que dos vecinos son amigos con una probabilidad fija \(p\),...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><link href="libs/_Sen-0.4.0/font.css" rel="stylesheet">
@@ -42,11 +42,11 @@
 
       <nav aria-label="Table of contents"><h2>Table of contents</h2>
         <ul class="book-toc list-unstyled">
-<li><a class="active" href="index.html">Prefacio</a></li>
+<li><a class="" href="index.html">Prefacio</a></li>
 <li><a class="" href="conteo-y-probabilidad.html"><span class="header-section-number">1</span> Conteo y Probabilidad</a></li>
 <li><a class="" href="probabilidad-condicional.html"><span class="header-section-number">2</span> Probabilidad Condicional</a></li>
 <li><a class="" href="variables-aleatorias.html"><span class="header-section-number">3</span> Variables Aleatorias</a></li>
-<li><a class="" href="percolation.html"><span class="header-section-number">4</span> Percolation</a></li>
+<li><a class="active" href="percolaci%C3%B3n.html"><span class="header-section-number">4</span> Percolación</a></li>
 </ul>
 
         <div class="book-extra">
@@ -54,23 +54,69 @@
         </div>
       </nav>
 </div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><!--bookdown:title:end--><!--bookdown:title:start--><div id="prefacio" class="section level1 unnumbered">
-<h1>Prefacio<a class="anchor" aria-label="anchor" href="#prefacio"><i class="fas fa-link"></i></a>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="percolación" class="section level1">
+<h1>
+<span class="header-section-number">4</span> Percolación<a class="anchor" aria-label="anchor" href="#percolaci%C3%B3n"><i class="fas fa-link"></i></a>
 </h1>
-<p>Apuntes de clase.</p>
+<div id="bond-percolation" class="section level2">
+<h2>
+<span class="header-section-number">4.1</span> Bond Percolation<a class="anchor" aria-label="anchor" href="#bond-percolation"><i class="fas fa-link"></i></a>
+</h2>
+<p><strong>Posible motivación:</strong>
+Imagina que un vértice de una malla entera <span class="math inline">\(d\)</span>-dimensional está ocupado por una persona y que dos vecinos son amigos con una probabilidad fija <span class="math inline">\(p\)</span>, independientemente.
+Si una enfermedad solamente puede contagiarse entre amigos,
+¿Cuál es la probabilidad de que la infección introducida en el origen resulte en una <strong>epidemia</strong> (que una cantidad infinita de personas se contagie)?</p>
+<div class="definition">
+<p><span id="def:unlabeled-div-12" class="definition"><strong>Definition 4.1  (Bond Percolation) </strong></span>Para cada arista <span class="math inline">\(e\)</span> que conecta dos vecinos, sea
+<span class="math display">\[
+\xi(e) \sim Bernoulli(p), \text{independiente}
+\]</span></p>
+<p>La arista <span class="math inline">\(e\)</span> están <strong>abiertas</strong> si <span class="math inline">\(\xi(e) = 1\)</span> y está <strong>cerrada</strong> si <span class="math inline">\(\xi(e) = 0\)</span>.</p>
+<p>Escribimos <span class="math inline">\(x \leftrightarrow\)</span> cuando existe un camino abierto que conecta <span class="math inline">\(x\)</span> e <span class="math inline">\(y\)</span>.</p>
+</div>
+<div class="definition">
+<p><span id="def:unlabeled-div-13" class="definition"><strong>Definition 4.2  (Cluster abierto en rl vértice $x$) </strong></span><span class="math display">\[ C_x = \{y\in\mathbb{Z}^d \;:\; x \leftrightarrow\} \]</span>.</p>
+</div>
+<div class="definition">
+<p><span id="def:unlabeled-div-14" class="definition"><strong>Definition 4.3  (Probabilidad de percolación) </strong></span><span class="math display">\[ \theta(p) = P_p(|C_0| = \infty) \]</span>.</p>
+</div>
+<div class="lemma">
+<p><span id="lem:unlabeled-div-15" class="lemma"><strong>Lemma 4.1  </strong></span><span class="math inline">\(\theta\)</span> es no decreciente</p>
+</div>
+<div class="lemma">
+<p><span id="lem:unlabeled-div-16" class="lemma"><strong>Lemma 4.2  ((Hammersley)) </strong></span>En <span class="math inline">\(\mathbb{Z}^d\)</span>, si <span class="math inline">\(p\mu(\mathbb{Z}^d) &lt; 1\)</span>, entonces <span class="math inline">\(\theta(p) = 0\)</span>, donde <span class="math inline">\(\mu(\mathbb{Z}^d)\)</span> es la constante de conectividad.</p>
+</div>
+<div class="lemma">
+<p><span id="lem:unlabeled-div-17" class="lemma"><strong>Lemma 4.3  ((Peierls)) </strong></span>En <span class="math inline">\(\mathbb{Z}^d\)</span>, <span class="math inline">\(d \ge 2\)</span>, si <span class="math inline">\((1-p)\mu(\mathbb{Z}^2) &lt; 1\)</span>, entonces <span class="math inline">\(\theta(p) \ge 0\)</span></p>
+</div>
+<div class="lemma">
+<p><span id="lem:unlabeled-div-18" class="lemma"><strong>Lemma 4.4  </strong></span>Para cada <span class="math inline">\(d \ge 2\)</span>, existe <span class="math inline">\(p_c(\mathbb{Z}^d) \in ]0,1[\)</span> tal que</p>
+<ul>
+<li>
+<span class="math inline">\(\theta(p) = 0\)</span> si <span class="math inline">\(p &lt; p_c(\mathbb{Z}^d)\)</span>
+</li>
+<li>
+<span class="math inline">\(\theta(p) &gt; 0\)</span> si <span class="math inline">\(p &gt; p_c(\mathbb{Z}^d)\)</span>
+</li>
+</ul>
+</div>
 
 </div>
+</div>
   <div class="chapter-nav">
+<div class="prev"><a href="variables-aleatorias.html"><span class="header-section-number">3</span> Variables Aleatorias</a></div>
 <div class="empty"></div>
-<div class="next"><a href="conteo-y-probabilidad.html"><span class="header-section-number">1</span> Conteo y Probabilidad</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
-      <ul class="nav navbar-nav"><li><a class="nav-link" href="#prefacio">Prefacio</a></li></ul>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#percolaci%C3%B3n"><span class="header-section-number">4</span> Percolación</a></li>
+<li><a class="nav-link" href="#bond-percolation"><span class="header-section-number">4.1</span> Bond Percolation</a></li>
+</ul>
 
       <div class="book-extra">
         <ul class="list-unstyled">
-<li><a id="book-source" href="https://github.com/pablo-cardenas/apuntes-probabilidad/blob/main/index.Rmd">View source <i class="fab fa-github"></i></a></li>
-          <li><a id="book-edit" href="https://github.com/pablo-cardenas/apuntes-probabilidad/edit/main/index.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+<li><a id="book-source" href="https://github.com/pablo-cardenas/apuntes-probabilidad/blob/main/04-percolation.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/pablo-cardenas/apuntes-probabilidad/edit/main/04-percolation.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
         </ul>
 </div>
     </nav>
