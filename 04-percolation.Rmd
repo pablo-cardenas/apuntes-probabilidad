@@ -1,0 +1,47 @@
+# Percolation
+
+## Bond Percolation
+
+**Posible motivación:**
+Imagina que un vértice de una malla entera $d$-dimensional está ocupado por una persona y que dos vecinos son amigos con una probabilidad fija $p$, independientemente.
+Si una enfermedad solamente puede contagiarse entre amigos,
+¿Cuál es la probabilidad de que la infección introducida en el origen resulte en una __epidemia__ (que una cantidad infinita de personas se contagie)?
+
+
+:::{ .definition name="Bond Percolation" }
+Para cada arista $e$ que conecta dos vecinos, sea
+\[
+\xi(e) \sim Bernoulli(p), \text{independiente}
+\]
+
+La arista $e$ están **abiertas** si $\xi(e) = 1$ y está **cerrada** si $\xi(e) = 0$.
+
+Escribimos $x \leftrightarrow$ cuando existe un camino abierto que conecta $x$ e $y$.
+:::
+
+:::{ .definition name="Cluster abierto en rl vértice $x$" }
+\[ C_x = \{y\in\mathbb{Z}^d \;:\; x \leftrightarrow\} \].
+:::
+
+:::{ .definition name="Probabilidad de percolación" }
+\[ \theta(p) = P_p(|C_0| = \infty) \].
+:::
+
+::: { .lemma }
+$\theta$ es no decreciente
+:::
+
+::: { .lemma name="(Hammersley)" }
+En $\mathbb{Z}^d$, si $p\mu(\mathbb{Z}^d) < 1$, entonces $\theta(p) = 0$, donde $\mu(\mathbb{Z}^d)$ es la constante de conectividad.
+:::
+
+::: { .lemma name="(Peierls)" }
+En $\mathbb{Z}^d$, $d \ge 2$, si $(1-p)\mu(\mathbb{Z}^2) < 1$, entonces $\theta(p) \ge 0$
+:::
+
+::: { .lemma }
+Para cada $d \ge 2$, existe $p_c(\mathbb{Z}^d) \in ]0,1[$ tal que
+
+* $\theta(p) = 0$ si $p < p_c(\mathbb{Z}^d)$
+* $\theta(p) > 0$ si $p > p_c(\mathbb{Z}^d)$
+:::
